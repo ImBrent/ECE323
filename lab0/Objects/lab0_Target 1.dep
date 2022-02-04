@@ -1,0 +1,4 @@
+Dependencies for Project 'lab0', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 6160000::V6.16::ARMCLANG
+F (.\startup_LPC11xx.s)(0x61DE1121)(--target=arm-arm-none-eabi -mcpu=cortex-m0 -masm=auto -c-gdwarf-4 -Wa,armasm,--pd,"__EVAL SETA 1"-IC:/Keil_v5/ARM/RV31/INC-IC:/Keil_v5/ARM/CMSIS/Include-IC:/Keil_v5/ARM/INC/NXP/LPC11xx-Wa,armasm,--pd,"__UVISION_VERSION SETA 536"-o ./objects/startup_lpc11xx.o)
+F (.\lab0.s)(0x61DF3567)(--target=arm-arm-none-eabi -mcpu=cortex-m0 -masm=auto -c-gdwarf-4 -Wa,armasm,--pd,"__EVAL SETA 1"-IC:/Keil_v5/ARM/RV31/INC-IC:/Keil_v5/ARM/CMSIS/Include-IC:/Keil_v5/ARM/INC/NXP/LPC11xx-Wa,armasm,--pd,"__UVISION_VERSION SETA 536"-o ./objects/lab0.o)

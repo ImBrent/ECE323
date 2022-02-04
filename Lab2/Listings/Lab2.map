@@ -1,0 +1,170 @@
+Component: ARM Compiler 6.16 Tool: armlink [5dfeaa00]
+
+==============================================================================
+
+Section Cross References
+
+    startup_lpc11xx.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_lpc11xx.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_lpc11xx.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_lpc11xx.o(RESET) refers to startup_lpc11xx.o(STACK) for __initial_sp
+    startup_lpc11xx.o(RESET) refers to startup_lpc11xx.o(.text) for Reset_Handler
+    startup_lpc11xx.o(.ARM.__at_0x02FC) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_lpc11xx.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup_lpc11xx.o(.text) refers to lab2.o(FLASH) for SystemInit
+    startup_lpc11xx.o(.text) refers to startup_lpc11xx.o(HEAP) for Heap_Mem
+    startup_lpc11xx.o(.text) refers to startup_lpc11xx.o(STACK) for Stack_Mem
+
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
+    Lab2.s                                   0x00000000   Number         0  lab2.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    startup_LPC11xx.s                        0x00000000   Number         0  startup_lpc11xx.o ABSOLUTE
+    RESET                                    0x00000000   Section      192  startup_lpc11xx.o(RESET)
+    .text                                    0x000000c0   Section       52  startup_lpc11xx.o(.text)
+    .text                                    0x000000f4   Section        0  heapauxi.o(.text)
+    FLASH                                    0x000000fc   Section      212  lab2.o(FLASH)
+    name                                     0x000001a4   Data          23  lab2.o(FLASH)
+    .ARM.__at_0x02FC                         0x000002fc   Section        4  startup_lpc11xx.o(.ARM.__at_0x02FC)
+    Heap_Mem                                 0x10000000   Data           0  startup_lpc11xx.o(HEAP)
+    Stack_Mem                                0x10000000   Data         512  startup_lpc11xx.o(STACK)
+    HEAP                                     0x10000000   Section        0  startup_lpc11xx.o(HEAP)
+    STACK                                    0x10000000   Section      512  startup_lpc11xx.o(STACK)
+    __initial_sp                             0x10000200   Data           0  startup_lpc11xx.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv3M$S$A:L22$X:L11$S22$IEEE1$IW$~IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$ROPI$EBA8$STANDARDLIB$REQ8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __Vectors                                0x00000000   Data           4  startup_lpc11xx.o(RESET)
+    Reset_Handler                            0x000000c1   Thumb Code     8  startup_lpc11xx.o(.text)
+    NMI_Handler                              0x000000c9   Thumb Code     2  startup_lpc11xx.o(.text)
+    HardFault_Handler                        0x000000cb   Thumb Code     2  startup_lpc11xx.o(.text)
+    SVC_Handler                              0x000000cd   Thumb Code     2  startup_lpc11xx.o(.text)
+    PendSV_Handler                           0x000000cf   Thumb Code     2  startup_lpc11xx.o(.text)
+    SysTick_Handler                          0x000000d1   Thumb Code     2  startup_lpc11xx.o(.text)
+    ADC_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    BOD_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    CAN_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    FMC_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    I2C_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    PIOINT0_IRQHandler                       0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    PIOINT1_IRQHandler                       0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    PIOINT2_IRQHandler                       0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    PIOINT3_IRQHandler                       0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    SSP0_IRQHandler                          0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    SSP1_IRQHandler                          0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    TIMER16_0_IRQHandler                     0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    TIMER16_1_IRQHandler                     0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    TIMER32_0_IRQHandler                     0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    TIMER32_1_IRQHandler                     0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    UART_IRQHandler                          0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    USB_FIQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    USB_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    WAKEUP_IRQHandler                        0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    WDT_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
+    __user_initial_stackheap                 0x000000d5   Thumb Code     0  startup_lpc11xx.o(.text)
+    __use_two_region_memory                  0x000000f5   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x000000f7   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x000000f9   Thumb Code     2  heapauxi.o(.text)
+    SystemInit                               0x000000fd   Thumb Code     0  lab2.o(FLASH)
+    __main                                   0x000000fd   Thumb Code     0  lab2.o(FLASH)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x000000c1
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000300, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000300, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x00000000   0x000000c0   Data   RO            3    RESET               startup_lpc11xx.o
+    0x000000c0   0x000000c0   0x00000034   Code   RO            5  * .text               startup_lpc11xx.o
+    0x000000f4   0x000000f4   0x00000006   Code   RO           18    .text               c_p.l(heapauxi.o)
+    0x000000fa   0x000000fa   0x00000002   PAD
+    0x000000fc   0x000000fc   0x000000d4   Code   RO           13  * FLASH               lab2.o
+    0x000001d0   0x000001d0   0x0000012c   PAD
+    0x000002fc   0x000002fc   0x00000004   Code   RO            4    .ARM.__at_0x02FC    startup_lpc11xx.o
+
+
+    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x00000300, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+
+    **** No section assigned to this execution region ****
+
+
+    Execution Region ER_ZI (Exec base: 0x10000000, Load base: 0x00000300, Size: 0x00000200, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x10000000        -       0x00000000   Zero   RW            2    HEAP                startup_lpc11xx.o
+    0x10000000        -       0x00000200   Zero   RW            1    STACK               startup_lpc11xx.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       212         44          0          0          0        256   lab2.o
+        56         26        192          0        512        728   startup_lpc11xx.o
+
+    ----------------------------------------------------------------------
+       568        370        192          0        512        984   Object Totals
+         0          0          0          0          0          0   (incl. Generated)
+       300        300          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         6          0          0          0          0        136   heapauxi.o
+
+    ----------------------------------------------------------------------
+         8          0          0          0          0        136   Library Totals
+         2          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+         6          0          0          0          0        136   c_p.l
+
+    ----------------------------------------------------------------------
+         8          0          0          0          0        136   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+       576        370        192          0        512       1120   Grand Totals
+       576        370        192          0        512       1120   ELF Image Totals
+       576        370        192          0          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                  768 (   0.75kB)
+    Total RW  Size (RW Data + ZI Data)               512 (   0.50kB)
+    Total ROM Size (Code + RO Data + RW Data)        768 (   0.75kB)
+
+==============================================================================
+
