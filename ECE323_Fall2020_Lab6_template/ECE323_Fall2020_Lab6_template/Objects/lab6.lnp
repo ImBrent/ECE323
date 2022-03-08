@@ -1,0 +1,14 @@
+--cpu Cortex-M0
+".\objects\startup_lpc11xx.o"
+".\objects\main.o"
+".\objects\part1.o"
+".\objects\timer32_0_irqhandler.o"
+".\objects\configclock.o"
+".\objects\level1_mat1.o"
+".\objects\level2.o"
+".\objects\level2configpin.o"
+".\objects\level3.o"
+--strict --scatter ".\Objects\lab6.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\lab6.map" -o .\Objects\lab6.axf

@@ -30,6 +30,11 @@ int main()
 	num1 = 5;
 	num2 = 4;
 	
+	int testPointer[100];
+	int m;
+	for(m = 0; m < 100; m++)
+		testPointer[m] = m;
+	
 	// the two function calls return integers so we must have
 	//  the integers declared and set = to the function call
 	sum = compute_sum(num1, num2);

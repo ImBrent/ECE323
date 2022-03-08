@@ -1,0 +1,19 @@
+--cpu Cortex-M0
+".\objects\startup_lpc11xx.o"
+".\objects\lab5.o"
+".\objects\busywait.o"
+".\objects\lcd_command.o"
+".\objects\lcd_init.o"
+".\objects\print_string.o"
+".\objects\configdir.o"
+".\objects\configinit.o"
+".\objects\level1.o"
+".\objects\level2.o"
+".\objects\level2_print_string.o"
+".\objects\level3.o"
+".\objects\string_length.o"
+".\objects\level3_print_string.o"
+--strict --scatter ".\Objects\Lab5.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Lab5.map" -o .\Objects\Lab5.axf

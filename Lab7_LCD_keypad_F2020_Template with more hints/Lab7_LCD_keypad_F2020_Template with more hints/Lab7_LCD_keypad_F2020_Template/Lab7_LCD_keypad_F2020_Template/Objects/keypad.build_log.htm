@@ -1,0 +1,65 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.36.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Brent Clapp, St. Cloud State University, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.36.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.16
+Assembler:       Armasm.exe V6.16
+Linker/Locator:  ArmLink.exe V6.16
+Library Manager: ArmAr.exe V6.16
+Hex Converter:   FromElf.exe V6.16
+CPU DLL:         SARMCM3.DLL V5.36.0.0
+Dialog DLL:      DARMP1.DLL V1.27.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TARMP1.DLL V1.26.0.0
+ 
+<h2>Project:</h2>
+C:\ECE323_Projects\Lab7_LCD_keypad_F2020_Template with more hints\Lab7_LCD_keypad_F2020_Template with more hints\Lab7_LCD_keypad_F2020_Template\Lab7_LCD_keypad_F2020_Template\keypad.uvproj
+Project File Date:  03/02/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+"LCD_command.s", line 122: Warning: A1581W: Added 2 bytes of padding at address 0x7a
+  122 0000007c  END
+0 Errors, 1 Warning
+assembling LCD_command.s...
+"main.s", line 54: Warning: A1581W: Added 2 bytes of padding at address 0x22
+   54 00000024  END; End of File
+0 Errors, 1 Warning
+assembling main.s...
+assembling PIOINT0_IRQHandler.s...
+assembling Keypad_init.s...
+assembling LCD_init.s...
+assembling startup_LPC11xx.s...
+assembling BusyWait.s...
+assembling LCD_config_dir.s...
+"convertKeyNum.s", line 19: Warning: A1581W: Added 3 bytes of padding at address 0x19
+   19 0000001c  END
+0 Errors, 1 Warning
+assembling convertKeyNum.s...
+assembling get_key_num.s...
+assembling Keypad_config_dir.s...
+assembling Print_Character.s...
+"wait_for_key_release.s", line 25: Warning: A1581W: Added 2 bytes of padding at address 0x16
+   25 00000018  END
+0 Errors, 1 Warning
+assembling wait_for_key_release.s...
+assembling EnableP0Interrupt.s...
+assembling DisableP0Interrupt.s...
+linking...
+.\Objects\keypad.sct(8): warning: L6314W: No section matches pattern *(InRoot$$Sections).
+Program Size: Code=908 RO-data=192 RW-data=0 ZI-data=512  
+Finished: 0 information, 1 warning and 0 error messages.
+".\Objects\keypad.axf" - 0 Error(s), 1 Warning(s).
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

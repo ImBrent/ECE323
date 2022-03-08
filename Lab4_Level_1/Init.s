@@ -100,6 +100,8 @@ Init
 	;Store updated value back into GPIO0DIR
 	STR R1, [R0]
 
+	;Direction of PIO1_8 is input by default.
+
 	POP {R0-R7, PC}
 
  END

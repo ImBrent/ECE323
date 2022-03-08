@@ -2,9 +2,11 @@
  INCLUDE	LPC11xx.inc
  EXPORT Level1
 
-CLOCKFREQ EQU 3000000	;Clock frequency is observed to be 3 MHz? Doesn't seem right. Make generically, fix later if need
-BLINKFREQ EQU 1			;The frequency needed to blink LEDs at (in Hz)
-NUMTICKS  EQU CLOCKFREQ / (BLINKFREQ * 2) - 4	;Num ticks before inverting output pin. 4 subtracted to offset extra statements
+CLOCKFREQ 	EQU 12000000		;Clock frequency
+CLOCKCYCLES EQU 4			;4 cycles per loop iteration. 3 for branch, 1 for addition (pg. 520-521)
+BLINKFREQ 	EQU 1			;The frequency needed to blink LEDs at (in Hz)
+				;Approximate num ticks before inverting output pin.
+NUMTICKS  	EQU CLOCKFREQ / (BLINKFREQ * 2 * CLOCKCYCLES)
 	
 Level1
 	PUSH{R0-R7,LR}

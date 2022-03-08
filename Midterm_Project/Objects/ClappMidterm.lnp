@@ -1,0 +1,28 @@
+--cpu Cortex-M0
+".\objects\startup_lpc11xx.o"
+".\objects\main.o"
+".\objects\keypad_init.o"
+".\objects\lcd_command.o"
+".\objects\lcd_init.o"
+".\objects\divide.o"
+".\objects\busywait.o"
+".\objects\configclock.o"
+".\objects\print_string.o"
+".\objects\lcd_config_dir.o"
+".\objects\keypad_config_dir.o"
+".\objects\enablep0interrupt.o"
+".\objects\disablep0interrupt.o"
+".\objects\key_num_to_ascii.o"
+".\objects\pioint0_irqhandler.o"
+".\objects\wait_for_key_release.o"
+".\objects\get_key_num.o"
+".\objects\get_next_key_input.o"
+".\objects\clear_new_key_flag.o"
+".\objects\print_character.o"
+".\objects\entertx.o"
+".\objects\memorysearch.o"
+".\objects\print_decimal_to_lcd.o"
+C:\Keil_v5\ARM\RV31\LIB\RTX_CM1.LIB
+--library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\ClappMidterm.map" -o .\Objects\ClappMidterm.axf

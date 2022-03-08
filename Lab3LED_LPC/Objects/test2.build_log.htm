@@ -30,19 +30,21 @@ Rebuild target 'Target 1'
 assembling startup_LPC11xx.s...
 compiling calculations.c...
 compiling system_LPC11xx.c...
-compiling initializations.c...
 compiling main.c...
 main.c(28): warning:  #550-D: variable "sum"  was set but never used
   	int sum, difference;
 main.c(28): warning:  #550-D: variable "difference"  was set but never used
   	int sum, difference;
-main.c(42): warning:  #177-D: variable "pin17Status"  was declared but never referenced
+main.c(33): warning:  #550-D: variable "testPointer"  was set but never used
+  	int testPointer[100];
+main.c(47): warning:  #177-D: variable "pin17Status"  was declared but never referenced
   	char pin1Output, pin17Status; //Output of pin1 is initially low in function call.
-main.c: 3 warnings, 0 errors
+main.c: 4 warnings, 0 errors
+compiling initializations.c...
 linking...
-Program Size: Code=1176 RO-data=224 RW-data=12 ZI-data=612  
-".\Objects\test2.axf" - 0 Error(s), 3 Warning(s).
-Build Time Elapsed:  00:00:01
+Program Size: Code=1212 RO-data=224 RW-data=12 ZI-data=612  
+".\Objects\test2.axf" - 0 Error(s), 4 Warning(s).
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
