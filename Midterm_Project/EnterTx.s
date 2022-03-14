@@ -115,7 +115,10 @@ pound_key
 	CMP Num_Chars, #0		;Check if pound is first char entered
 	BNE Store_Value			;If not zero, then go to code that handles storing entered value
 	
-	;Otherwise, print # on screen and set pound flag
+	;Otherwise, print # on screen if not already printed and set pound flag
+	CMP POUND_FLAG, #1	;If flag is set, then don't print
+	BEQ getNextInput
+	
 	PUSH{R5}
 	MOVS R5, #0x23	;Code for '#' in ASCII
 	BL LCD_config_dir
@@ -147,28 +150,25 @@ checkUpper	;Check upper bound. Must be <=48,000,000
 	BGT restart
 
 	;Both bounds satisfied. Assign value.
+	
+	;Set flag indicating that Tx has been updated
+	;Bit 29 corresponds to T0, Bit 30 corresponds to T1
+	MOVS R4, #29	
+	ADDS R4, x		;Set R2 to 29 if T0, 30 if T1
+	MOVS R3, #1
+	LSLS R3, R3, R4	;Set appropriate bit in R3
+	ORRS R7, R7, R3	;Set that bit in R7. Flag now set.
+	
 	CMP x, #0	;If x is 0, then place Entered value into R0
 	BNE assignT1
-assignT0
-	CMP Entered_Value, R1 ;Make sure that entered value => T1 before assigning
-	BLT restart	;Restart if  < T1
-	
+assignT0	
 	MOVS R0, Entered_Value ;Assign entered T0 to R0
 	B exit
 	
 assignT1
-	CMP Entered_Value, R0	;Make sure that entered value <= T0 before assigning
-	BGT restart	;Restart if > T0
 	MOVS R1, Entered_Value	;Assign entered T1 to R1
 	
 exit
-	;Set flag indicating that Tx has been updated
-	;Bit 29 corresponds to T0, Bit 30 corresponds to T1
-	MOVS R2, #29	
-	ADDS R2, x		;Set R2 to 29 if T0, 30 if T1
-	MOVS R3, #1
-	LSLS R3, R3, R2	;Set appropriate bit in R3
-	ORRS R7, R7, R3	;Set that bit in R7. Flag now set.
 	
 	POP{R2-R6, PC}
 prompt	DCB		"Enter T",0	;Remainder of string will be manually entered.

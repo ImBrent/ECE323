@@ -24,8 +24,8 @@ LCD_init
 	MOVS R5, #0x0
 	STR  R5, [R4]
 	
-	LDR  R4, =(IOCON_PIO0_7)
-	MOVS R5, #0x0
+	LDR  R4, =(IOCON_R_PIO1_0)
+	MOVS R5, #0x1
 	STR  R5, [R4]
 	
 	LDR  R4, =(IOCON_PIO1_8)
@@ -33,16 +33,18 @@ LCD_init
 	STR  R5, [R4]
 	
 	LDR  R4, =(GPIO0DIR)
-	MOVS R5, #0x9E
+	LDR R0, [R4]
+	MOVS R5, #0x1E
+	ORRS R5, R5, R0
 	STR  R5, [R4]
 
 	LDR R4, =(GPIO1DIR)
-	MOVS	R5, #0x1
-	MOVS R5, R5, LSL #8
-	ORRS R5, R4,R5
+	LDR R0, [R4]
+	LDR R5, =0x101
+	ORRS R5, R5, R0
 	STR R5, [R4]
 	
-	LDR R3, =1000000
+	LDR R3, =1000
 	BL BusyWait
 	
 	MOVS R1, #0			;0 to indicate command being given to LCD_command

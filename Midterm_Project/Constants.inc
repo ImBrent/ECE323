@@ -35,4 +35,13 @@ KEY_C				EQU		0x2
 KEY_D				EQU		0x3
 KEY_ASTERISK		EQU		0xF
 KEY_POUND			EQU		0x7
+	
+;Declarations related to local memory storing in processInputs/memory_update subroutines
+memory_pointer	RN	2
+memory_offset	RN	4
+element_size	EQU	4
+num_elements	EQU	2
+memory_block	EQU	element_size * num_elements	;8 bytes per tuple
+num_blocks		EQU	10
+memory_size		EQU	num_blocks * memory_block 
 	END

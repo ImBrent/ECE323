@@ -20,7 +20,7 @@ Keypad_config_dir
 	ANDS R1, R2			;Apply bit pattern to existing value of GPIO0DIR
 	STR R1, [R0]		;Store updated value back into GPIO0DIR
 
-	LDR  R4, =(GPIO1DATA)		;clear the row
+	LDR  R4, =(GPIO0DATA)		;clear the row
 	LDR R5, =(0x0)
 	STR  R5, [R4]
 

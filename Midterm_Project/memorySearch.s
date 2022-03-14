@@ -106,20 +106,22 @@ verify
 	LSLS R6, R6, #28	;Set bit 28
 	ANDS R6, R6, R7		;Get bit 28 from R7
 	CMP R6, #0			;Check if bit is set
-	BNE valid			;If bit is set, then valid
+	BNE valid1			;If bit is set, then valid
 	;Otherwise, to determine validity: Multiply entered number by 8, compare against memory offset
 	SUBS R3, R3, #0x30		;Convert from ASCII to decimal
-;	PUSH {R3};Preserve R3
 	MOVS R6, #8
 	MULS R3, R6, R3
 	CMP R3, memory_offset
-;	POP {R3} 	;Restore R3. Won't affect status flags.
-	BLT valid	;If input * 8 < memory_offset, then valid
+	BLT valid2	;If input * 8 < memory_offset, then valid
 	;Otherwise, invalid
 invalid
 	;Invalid input: restart.
 	B restart
-valid
+valid1
+	SUBS R3, R3, #0x30		;Convert from ASCII to decimal
+	MOVS R6, #8
+	MULS R3, R6, R3
+valid2
 	;If valid input, find T0 and T1, assign to R0 and R1, display them
 	;Find T0:
 	LDR R0, [memory_pointer, R3] ;Store T0 in R0

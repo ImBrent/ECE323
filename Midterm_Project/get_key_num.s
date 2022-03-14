@@ -27,13 +27,15 @@ get_key_num
 	MOVS ROW_NUM, #3		
 check_row
 		;Get necessary code to ground currently examined row
-		MOVS ROWS, #0xF
+		LDR ROWS, =0x8E0
+		LDR R4, =row_pins
+		LDRB R2, [R4, ROW_NUM] ;Get pin number to ground for this iteration
 		MOVS R1, #1
-		MOVS R1, R1, LSL ROW_NUM
+		MOVS R1, R1, LSL R2
 		EORS ROWS, ROWS, R1
 		
 		;Ground the row
-		LDR	R4,=(GPIO1DATA)
+		LDR	R4,=(GPIO0DATA)
 		MOVS R5, ROWS
 		STR R5, [R4]
 		
@@ -82,5 +84,6 @@ exit
 	ORRS R7, R7, KEY_NUM ;Apply new bits
 	
 	POP{R0-R6,PC}
+row_pins	DCB		11,7,6,5	;Pins numbers corresponding to row 4,3,2,1
 	ALIGN
 	END

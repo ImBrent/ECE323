@@ -8,7 +8,7 @@ wait_for_key_release
 	LDR R0, =(GPIO0DATA) ;Get address of columns
 	
 	;Ground all rows
-	LDR	R4,=(GPIO1DATA)
+	LDR	R4,=(GPIO0DATA)
 	MOVS R5, #0x00
 	STR R5, [R4]
 

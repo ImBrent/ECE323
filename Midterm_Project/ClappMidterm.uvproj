@@ -175,7 +175,7 @@
             <Capability>1</Capability>
             <DriverSelection>4101</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
+          <bUseTDR>1</bUseTDR>
           <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
@@ -546,6 +546,81 @@
               <FileName>print_decimal_to_LCD.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\print_decimal_to_LCD.s</FilePath>
+            </File>
+            <File>
+              <FileName>enterChannel.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\enterChannel.s</FilePath>
+            </File>
+            <File>
+              <FileName>configureChannel.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\configureChannel.s</FilePath>
+            </File>
+            <File>
+              <FileName>channel_init.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\channel_init.s</FilePath>
+            </File>
+            <File>
+              <FileName>Init_TMR32B0.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Init_TMR32B0.s</FilePath>
+            </File>
+            <File>
+              <FileName>Init_TMR32B1.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Init_TMR32B1.s</FilePath>
+            </File>
+            <File>
+              <FileName>Init_TMR16B0.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Init_TMR16B0.s</FilePath>
+            </File>
+            <File>
+              <FileName>Init_TMR16B1.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Init_TMR16B1.s</FilePath>
+            </File>
+            <File>
+              <FileName>determine_prescale.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\determine_prescale.s</FilePath>
+            </File>
+            <File>
+              <FileName>processInputs.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\processInputs.s</FilePath>
+            </File>
+            <File>
+              <FileName>memory_update.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\memory_update.s</FilePath>
+            </File>
+            <File>
+              <FileName>capture_init.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\capture_init.s</FilePath>
+            </File>
+            <File>
+              <FileName>TIMER32_0_IRQHandler.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\TIMER32_0_IRQHandler.s</FilePath>
+            </File>
+            <File>
+              <FileName>capture_flag_handler.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\capture_flag_handler.s</FilePath>
+            </File>
+            <File>
+              <FileName>GlobalVariables.inc</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\GlobalVariables.inc</FilePath>
+            </File>
+            <File>
+              <FileName>TMR32B0MR3_Interrupt.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\TMR32B0MR3_Interrupt.s</FilePath>
             </File>
           </Files>
         </Group>

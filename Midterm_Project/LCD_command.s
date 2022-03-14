@@ -19,17 +19,21 @@ LCD_command
 	PUSH{R0-R6,LR}
 
 	;Set correct reset bits for GPIO0DATA
+	MOVS R5, #1
+	LDR R3, =GPIO1DATA
+	LDR R6, [R3]
 	CMP R1, #1
 	BEQ dataMode
 commandMode
-	LDR R1, =0xFFFFFF61
-	MOVS R2, #0
+	BICS R6, R6, R5
 	BL Load_UpperDB
 dataMode
-	LDR R1, =0xFFFFFFE1
-	MOVS R2, #0x80
+	ORRS R6, R6, R5
+;	MOVS R2, #0x80
 	
 Load_UpperDB
+	STR R6, [R3]
+	LDR R1, =0xFFFFFF61	
 	
 	;== Split data into upper bit
 	
@@ -45,7 +49,7 @@ Load_UpperDB
 	;== Send lower 4-bit
 	LDR R4, =(GPIO0DATA)
 	MOVS R5, payload, LSL #1
-	ORRS R5, R2, R5
+;	ORRS R5, R2, R5
 	STR R5, [R4]
 	
 	;;===Delay
@@ -54,9 +58,11 @@ Load_UpperDB
 	
 	;==Set E;;;
 	LDR R4, =(GPIO1DATA)
+	LDR R6, [R4]
 	MOVS R5, #0x1
 	MOVS R5, R5, LSL #8
-	STR	R5, [R4]
+	ORRS R6, R6, R5
+	STR	R6, [R4]
 	
 	;===Delay
 	LDR R3, =DELAY
@@ -66,9 +72,10 @@ Load_UpperDB
 	;==Clear E
 	
 	LDR R4, =(GPIO1DATA)
-	MOVS R5, #0x0
-	MOVS R5, R5, LSL #8
-	STR	R5, [R4]
+	LDR R6, [R4]
+	;R5 already has appropriate bit to clear
+	BICS R6, R6, R5
+	STR	R6, [R4]
 	
 Load_LowerDB
 
@@ -86,7 +93,7 @@ Load_LowerDB
 	;== Send lower 4-bit
 	LDR R4, =(GPIO0DATA)
 	MOVS R5, payload, LSL #1
-	ORRS R5, R2, R5
+;	ORRS R5, R2, R5
 	STR R5, [R4]
 	
 	;;===Delay
@@ -95,9 +102,11 @@ Load_LowerDB
 	
 	;==Set E;;;
 	LDR R4, =(GPIO1DATA)
+	LDR R6, [R4]
 	MOVS R5, #0x1
 	MOVS R5, R5, LSL #8
-	STR	R5, [R4]
+	ORRS R6, R6, R5
+	STR	R6, [R4]
 	
 	;===Delay
 	LDR R3, =DELAY
@@ -107,9 +116,10 @@ Load_LowerDB
 	;==Clear E
 	
 	LDR R4, =(GPIO1DATA)
-	MOVS R5, #0x0
-	MOVS R5, R5, LSL #8
-	STR	R5, [R4]
+	LDR R6, [R4]
+	;R5 already has appropriate bit to clear
+	BICS R6, R6, R5
+	STR	R6, [R4]
 	
 Post_processing
    ;;delay to allow LCD to process information
