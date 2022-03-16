@@ -12,5 +12,5 @@ _capture_time_pos			EQU 4
 _capture_time_neg			EQU 0
 _counter1					EQU	16	;counter corresponding to number of overflows before neg edge recorded
 _counter0					EQU	20	;counter corresponding to number of overflows before pos edge recorded
-	
+_memory_flags				EQU	24	;Flags indicating whether memory slots 0-9 have been assigned.	
 	END

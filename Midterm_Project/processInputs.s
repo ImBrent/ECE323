@@ -25,7 +25,6 @@ processInputs
 	
 	MOVS R0, #0		;T0 initially 0
 	MOVS R1, #0		;T1 initially 0
-	MOVS memory_offset,	#0	;Initialize offset of memory to be 0 initially
 
 getNextInput
 	BL LCD_config_dir
@@ -66,28 +65,21 @@ skipName
 KEY_A_LOGIC
 	MOVS R5, #0
 	BL EnterTx
-	BL memory_update
 	B getNextInput
 	
 KEY_B_LOGIC
 	MOVS R5, #1
 	BL EnterTx
-	BL memory_update
 	B getNextInput
 	
 KEY_C_LOGIC
 	MOVS R5, #0		;Indicate prompt for subroutine to display
-	PUSH{R0,R1}		;Do not want updated R0,R1
-	BL memorySearch
-	POP{R0,R1}
+	BL memory_update
 	B skipName
 	
 KEY_D_LOGIC
 	MOVS R5, #1		;Indicate prompt for subroutine to display
 	BL memorySearch
-	;Clear bits 29 and 30 of vector (T0 and T1 updated)
-	LDR R5, =0x60000000 ;Bits 29/30 set
-	BICS R7, R7, R5		;Clear the bits
 	B skipName
 
 KEY_ASTERISK_LOGIC

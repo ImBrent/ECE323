@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\ClappMidterm.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\ClappMidterm.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sat Mar 12 22:31:15 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Wed Mar 16 14:26:13 2022
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -17,13 +17,13 @@ Functions with no stack information
  <LI><a href="#[20]">Keypad_init</a>
  <LI><a href="#[22]">LCD_command</a>
  <LI><a href="#[1f]">LCD_init</a>
- <LI><a href="#[32]">Divide</a>
  <LI><a href="#[23]">BusyWait</a>
+ <LI><a href="#[2d]">get_next_key_input</a>
+ <LI><a href="#[32]">Divide</a>
  <LI><a href="#[1c]">ConfigClock</a>
  <LI><a href="#[24]">print_string</a>
  <LI><a href="#[2f]">Key_num_to_ascii</a>
  <LI><a href="#[19]">PIOINT0_IRQHandler</a>
- <LI><a href="#[2d]">get_next_key_input</a>
  <LI><a href="#[2e]">clear_new_key_flag</a>
  <LI><a href="#[29]">Print_Character</a>
  <LI><a href="#[2a]">EnterTx</a>
@@ -214,7 +214,8 @@ Global Symbols
 <P><STRONG><a name="[22]"></a>LCD_command</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd_command.o(PROGRAM))
 <BR><BR>[Calls]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BusyWait
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_decimal_to_LCD
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
@@ -232,16 +233,24 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[32]"></a>Divide</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, divide.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;determine_prescale
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureChannel
-<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_decimal_to_LCD
-</UL>
-
 <P><STRONG><a name="[23]"></a>BusyWait</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, busywait.o(PROGRAM))
 <BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIOINT0_IRQHandler
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 <LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
+</UL>
+
+<P><STRONG><a name="[2d]"></a>get_next_key_input</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, get_next_key_input.o(PROGRAM))
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
+</UL>
+
+<P><STRONG><a name="[32]"></a>Divide</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, divide.o(PROGRAM))
+<BR><BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;determine_prescale
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureChannel
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_decimal_to_LCD
 </UL>
 
 <P><STRONG><a name="[1c]"></a>ConfigClock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, configclock.o(PROGRAM))
@@ -251,7 +260,8 @@ Global Symbols
 <P><STRONG><a name="[24]"></a>print_string</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, print_string.o(PROGRAM))
 <BR><BR>[Calls]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
@@ -259,7 +269,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2f]"></a>Key_num_to_ascii</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, key_num_to_ascii.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
 </UL>
@@ -273,15 +284,9 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc11xx.o(RESET)
 </UL>
-<P><STRONG><a name="[2d]"></a>get_next_key_input</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, get_next_key_input.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
-<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
-<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
-</UL>
-
 <P><STRONG><a name="[2e]"></a>clear_new_key_flag</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, clear_new_key_flag.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
@@ -290,7 +295,8 @@ Global Symbols
 <P><STRONG><a name="[29]"></a>Print_Character</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, print_character.o(PROGRAM))
 <BR><BR>[Calls]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 </UL>
-<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
 </UL>
@@ -326,7 +332,8 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Divide
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
 </UL>
 
@@ -399,7 +406,17 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3a]"></a>memory_update</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, memory_update.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
+<BR><BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_decimal_to_LCD
+<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Print_Character
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_new_key_flag
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_next_key_input
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Key_num_to_ascii
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Keypad_config_dir
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_config_dir
+<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
+<LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_string
+</UL>
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
 </UL>
 
 <P><STRONG><a name="[1e]"></a>capture_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, capture_init.o(PROGRAM))
@@ -428,7 +445,8 @@ Global Symbols
 <P><STRONG><a name="[2b]"></a>LCD_config_dir</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd_config_dir.o(program))
 <BR><BR>[Calls]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableP0Interrupt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
@@ -438,7 +456,8 @@ Global Symbols
 <P><STRONG><a name="[2c]"></a>Keypad_config_dir</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, keypad_config_dir.o(program))
 <BR><BR>[Calls]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableP0Interrupt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
+<BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
 <LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx

@@ -7,8 +7,6 @@
 ;	* R2 - Memory pointer - Points to beginning of memory segment
 ;	* R4 - Memory offset  - Index of where least recent memory write is
 ;								(Or, if memory not full, then it is next empty slot)
-;	* R5 - Print Mode	  - 0 if printing "Memory location?"
-;						  - 1 if printing "Recall Memory:"
 ;	* R7 - Status vector  - Bit 28 should be set if memory is full.
 ;Postconditions:
 ;	* 
@@ -16,6 +14,7 @@
  AREA PROGRAM, CODE, READONLY
  EXPORT memorySearch
  INCLUDE Constants.inc
+ INCLUDE GlobalVariables.inc
  IMPORT print_string
  IMPORT LCD_config_dir
  IMPORT Keypad_config_dir
@@ -26,21 +25,15 @@
  IMPORT Key_num_to_ascii
  IMPORT print_decimal_to_LCD
 	
-keyEntered		RN	2
-memory_offset	RN	4
+keyEntered		RN	4
 memory_pointer	RN	2
 	
 memorySearch
-	PUSH{R3,R5,R6,LR}
-restart		
-	PUSH{R2,R4}		;Will be restored earlier than other registers.
+	PUSH{R2-R6,LR}
 	
 	MOVS keyEntered, #0	;No key entered. Set to 1 when a key is entered
 	;Print prompt
-	LDR R3, =memoryLocationPrompt	;Assumption is memory location prompt. Will be overwritten if Print Mode is 1
-	CMP R5, #1
-	BNE print_prompt
-	LDR R3, =recallMemoryPrompt		;If print mode is 1, then overwrite assumption
+	LDR R3, =recallMemoryPrompt		;Load address of string to print
 print_prompt
 	BL LCD_config_dir	;Set pins for LCD
 
@@ -50,7 +43,6 @@ print_prompt
 	BL LCD_command	;Clear display
 
 	BL print_string ;print prompt
-reprint
 	;Move cursor to next line
 	MOVS R0, #NEXT_LINE
 	MOVS R1, #0
@@ -63,72 +55,67 @@ getNextInput
 	
 	;Determine what to do with key input
 	CMP R6, #KEY_D ;Checking whether in row with A,B,C,D
-	BLE quit	   ;If yes, then get out of subroutine.
-
+		BLE done	   ;If yes, then get out of subroutine
 	CMP R6, #KEY_ASTERISK
-	BEQ quit			;If asterisk, leave subroutine w/o clearing flag
-	
+		BEQ done			;If asterisk, leave subroutine w/o clearing flag
 	CMP R6, #KEY_POUND
-	BEQ pound_key		;If pound key, perform necessary logic
-	
+		BEQ pound_key		;If pound key, perform necessary logic
 digit	;Otherwise, input is a digit
-	CMP keyEntered, #1		;Check if a key was already entered
-	BNE processDigit		;If not, skip over.
-	MOVS keyEntered, #0	;If key was entered, then go through process again to overwrite previous key
+	BL clear_new_key_flag
+
 	BL LCD_config_dir	;Set pins for LCD
 	PUSH{R0,R1}
+	;Reset cursor to beginning of line 2.
 	MOVS R0, #HOME
 	MOVS R1, #0
 	BL LCD_command
-	B reprint
-	
-processDigit
-	PUSH{R5}
+	MOVS R0, #NEXT_LINE
+	BL LCD_command
+	POP{R0,R1}
+	;Get entered character
 	BL Key_num_to_ascii	;Convert from Key num to ASCII. Ascii is in R5
 	MOVS R3, R5			;Make copy of ASCII value into R3 for later use
+	;Print entered character
 	BL LCD_config_dir
 	BL Print_Character ;Print character stored in R5
 	BL Keypad_config_dir	
-	POP{R5}
-	BL clear_new_key_flag
 	MOVS keyEntered, #1
-	B getNextInput
+	
+	;Convert to decimal, store in R3
+	SUBS R3, R3, #0x30
+	B getNextInput ;Get next key input
 	
 pound_key
 	BL clear_new_key_flag	;Always clear flag
 	CMP keyEntered, #0		;If key is not entered yet, then do nothing
 	BEQ getNextInput
 	;Otherwise, verify input.
-verify
-	POP{R2,R4}
-	;Extract bit 28 from R7
-	MOVS R6, #1
-	LSLS R6, R6, #28	;Set bit 28
-	ANDS R6, R6, R7		;Get bit 28 from R7
-	CMP R6, #0			;Check if bit is set
-	BNE valid1			;If bit is set, then valid
-	;Otherwise, to determine validity: Multiply entered number by 8, compare against memory offset
-	SUBS R3, R3, #0x30		;Convert from ASCII to decimal
-	MOVS R6, #8
-	MULS R3, R6, R3
-	CMP R3, memory_offset
-	BLT valid2	;If input * 8 < memory_offset, then valid
-	;Otherwise, invalid
-invalid
-	;Invalid input: restart.
-	B restart
-valid1
-	SUBS R3, R3, #0x30		;Convert from ASCII to decimal
-	MOVS R6, #8
-	MULS R3, R6, R3
-valid2
-	;If valid input, find T0 and T1, assign to R0 and R1, display them
-	;Find T0:
-	LDR R0, [memory_pointer, R3] ;Store T0 in R0
 	
-	;Find T1:
-	ADDS R3, R3, #4				;Move to next word
-	LDR R1, [memory_pointer, R3] ;Store T1 in R1
+checkIfAssigned	
+	;Extract memory head from R7
+	LDR R4, =0xFFFF0
+	ANDS R4, R7, R4
+	LSRS R4, R4, #4
+	LDR R5, =0x10000000
+	ADDS R4, R4, R5	;Memory head now in R4
+	;Get correct memory location
+	SUBS R4, R4, #_memory_flags
+	LDR R6, [R4]	;R6 now has flags
+	
+	;Check if flag corresponding to entered input is set
+	MOVS R5, #1
+	LSLS R5, R5, R3	;Set bit corresponding to entered input
+	ANDS R5, R5, R6	;Check if bit is set
+	CMP R5, #0
+	BEQ undefinedInput
+valid
+
+	MOVS R5, #0x8
+	MULS R3, R5, R3
+	ADDS memory_pointer, memory_pointer, R3
+	LDR R0, [memory_pointer]		;Store R0 to memory, decrement pointer
+	ADDS memory_pointer, #element_size
+	LDR R1, [memory_pointer]		;Store R1 to memory	
 	
 	;Display:
 	BL LCD_config_dir	;Configure pins for LCD
@@ -160,16 +147,28 @@ valid2
 	BL print_decimal_to_LCD	;Print the decimal number from T1 to LCD
 	BL Keypad_config_dir	;Configure pins for Keypad
 	
-	B done
+	B done	
 	
-quit	;Only accessed when ACBD* is pushed
-	POP{R2,R4}	;Restore these values
+undefinedInput
+;This code is accessed if user enters a location that is not yet
+;defined in memory
+	PUSH{R0,R1}
+	BL LCD_config_dir
+	;Clear LCD, reset cursor
+	MOVS R0, #CLEAR
+	MOVS R1, #0
+	BL LCD_command
+	MOVS R0, #HOME
+	BL LCD_command
+	;Print message
+	LDR R3, =memoryUndefinedMessage
+	BL print_string
 	
+	BL Keypad_config_dir
+	POP{R0,R1}
 done
-	POP{R3,R5,R6,PC}
-memoryLocationPrompt	DCB		"Memory location?",0
+	POP{R2-R6,PC}
 recallMemoryPrompt		DCB		"Recall memory:",0
-T0Label					DCB		"T0:",0
-T1Label					DCB		"T1:",0
+memoryUndefinedMessage	DCB		"Mem Undefined",0
 	ALIGN
 	END

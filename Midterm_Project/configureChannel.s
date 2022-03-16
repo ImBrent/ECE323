@@ -14,13 +14,13 @@ configureChannel
 	PUSH{R0-R6,LR}
 	
 	CMP R2, #1
-		BEQ channel1
-	CMP R2, #2
-		BEQ channel2
-	CMP R2, #3
 		BEQ channel3
-	CMP R2, #4
+	CMP R2, #2
+		BEQ channel1
+	CMP R2, #3
 		BEQ channel4
+	CMP R2, #4
+		BEQ channel2
 	
 channel1
 	;Update MRs

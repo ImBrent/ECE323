@@ -29,6 +29,17 @@ __main
 	ORRS R7, R7, R1	;Set necessary bits.	
 	SUB sp, sp, #global_memory_size ;Allocate the space on the stack
 	
+	;Initialize global memory to be 0
+	MOVS R1, #global_memory_size
+	SUBS R1, R0, R1
+	MOVS R2, #0
+	;Do while R0 != R1
+initializeMemory
+	STR R2, [R1]
+	ADDS R1, R1, #4	
+	CMP R0, R1
+	BNE initializeMemory
+
 	;Initialize clock
 	BL ConfigClock
 	
