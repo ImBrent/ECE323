@@ -588,6 +588,11 @@
               <FilePath>.\determine_prescale.s</FilePath>
             </File>
             <File>
+              <FileName>capture_init.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\capture_init.s</FilePath>
+            </File>
+            <File>
               <FileName>processInputs.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\processInputs.s</FilePath>
@@ -596,11 +601,6 @@
               <FileName>memory_update.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\memory_update.s</FilePath>
-            </File>
-            <File>
-              <FileName>capture_init.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\capture_init.s</FilePath>
             </File>
             <File>
               <FileName>TIMER32_0_IRQHandler.s</FileName>
@@ -621,6 +621,16 @@
               <FileName>TMR32B0MR3_Interrupt.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\TMR32B0MR3_Interrupt.s</FilePath>
+            </File>
+            <File>
+              <FileName>TMR32B0CAP_INT.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\TMR32B0CAP_INT.s</FilePath>
+            </File>
+            <File>
+              <FileName>TIMER32_1_IRQHandler.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\TIMER32_1_IRQHandler.s</FilePath>
             </File>
           </Files>
         </Group>

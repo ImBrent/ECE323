@@ -3,7 +3,6 @@
 ;A file containing the byte offset of all global variables, as well as the total
 ;amount of memory that must be allocated to global variables.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 global_memory_size	EQU	24
 	
 _T0							EQU	8

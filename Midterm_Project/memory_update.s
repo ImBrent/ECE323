@@ -1,9 +1,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;memory_update
+;This subroutine writes current values of T0 and T1 to a user entered memory location
+;	if T0 and T1 are assigned and T0 >= T1 The subroutine prompts the user for the memory location,
+;	and receives it as input
 ;Preconditions:
-;	*
+;	* R0: Contains T0
+;	* R1: Contains T1
+;	* R7: Contains flags indicating whether T0/T1 have been entered
 ;Postconditions:
-;	*
+;	* If user enters ABCD*:
+;		- Subroutine returns with entered key in R7 and new key flag set
+;	* If T0 and T1 are set:
+;		- T0 and T1 are assigned to the user entered memory location.
+;	* If T0/T1 not set or T0 < T1:
+;		- Memory not updated. Message printed to LCD indicating as such
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  INCLUDE Constants.inc

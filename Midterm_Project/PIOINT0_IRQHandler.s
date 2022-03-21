@@ -1,21 +1,23 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; PIOINT0_IRQHandler.s
+; Implementation of the interrupt for Port 0.
+;
+; For any interrupt on port 0, this subroutine will scan the keypad in attempt to
+; find a key that is pressed.
+; If a key is found: 
+;		The key number of that key is returned in the lower 4
+;		bits of R7, and the new key flag in R7 is set. The handler will not 
+;		return until it detects that all keys are up.
+; Otherwise, if a key is not detected, no changes are made. The handler returns
+; 		immediately after determining that no key is down.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
- INCLUDE	LPC11xx.inc
  EXPORT PIOINT0_IRQHandler
- IMPORT LCD_command
- IMPORT LCD_init 
- IMPORT Keypad_init
  IMPORT BusyWait
- IMPORT LCD_config_dir
- IMPORT Keypad_config_dir
  IMPORT get_key_num
  IMPORT wait_for_key_release
  IMPORT EnableP0Interrupt
  IMPORT DisableP0Interrupt
-			
-KEY_NUM		RN		7
-NEW_KEY		RN		6
-ROW_NUM		RN		3
-ROWS		RN		0
 
 PIOINT0_IRQHandler
 	PUSH {R3,LR}
@@ -27,7 +29,7 @@ PIOINT0_IRQHandler
 	BL BusyWait	
 	
 	;Get Key number from keypad
-	BL get_key_num
+	BL get_key_num ;Place key number in lower 4 bits of R7, sets new key flag
 
 wait
 	;Wait for user to release key before leaving interrupt
@@ -41,6 +43,5 @@ wait
 	BL EnableP0Interrupt
 
 	POP{R3,PC}
-	BX LR
 	ALIGN
 	END

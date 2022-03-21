@@ -1,5 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;
+;capture_flag_handler
+;Prints T0 and T1 from last capture event
+;Preconditions:
+;	* T0/T1 capture period are defined in memory
+;Postconditions:
+;	* T0/T1 capture period are displayed to LCD
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  EXPORT capture_flag_handler

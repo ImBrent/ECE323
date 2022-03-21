@@ -4,7 +4,8 @@
 ;		as output.
 ;Preconditions:
 ;	*R2 contains dividend
-;	*R3 contains divisor
+;	*R3 contains divisor 
+;		- Divisor cannot be 0. Subroutine will never return if 0.
 ;Postconditions:
 ;	*R4 contains quotient
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

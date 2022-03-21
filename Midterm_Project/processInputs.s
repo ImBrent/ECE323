@@ -1,7 +1,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;processInputs.s
+;This subroutine control the program execution. 
+;	* Allocates space for variables to hold the 10 pairs of T0,T1
+;	* Continuously checks for new key flag to be set (which is set via interrupt)
+;	  * Once new key flag is set:
+;		- Clears new key flag
+;		- Based upon value of new key, will branch to an appropriate subroutine
+;		  - 'A': Enter T0
+;		  - 'B': Enter T1
+;		  - 'C': Store to memory
+;		  - 'D': Retrieve from memory
+;		  - '#': Display recorded capture pin period
+;		  - '*': Assign T0/T1 to channel
+;		  - digit: Do nothing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
  AREA PROGRAM, CODE, READONLY
  EXPORT processInputs
  INCLUDE LPC11xx.inc
@@ -89,8 +101,7 @@ KEY_ASTERISK_LOGIC
 KEY_POUND_LOGIC
 	;Check if capture flag is set (Bit 27 of R7)
 	LDR R3, =0x08000000
-	ANDS R3, R3, R7
-	CMP R3, #0
+	TST R3, R7
 	BEQ getNextInput	;If flag is not set, then don't do display logic
 	BL capture_flag_handler
 	B skipName	;Don't print name over output

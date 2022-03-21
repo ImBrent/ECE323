@@ -104,15 +104,42 @@ pound_key
 	CMP isEntered, #1
 		BNE getNextInput	;Only proceed if a digit has been entered.
 	
+	;Check if both T0 and T1 assigned (Bit 29 and 30 of R7)
+	MOVS R4, R7
+	LSRS R4, R4, #29 ;Shift out all bits except 29-31
+	MOVS R5, #0x3	;Set bits 0 and 1
+	ANDS R4, R4, R5	;Isolate bits 0 and 1
+	CMP R4, #0x3	;Check if set
+	BNE error		;If either is not set, then don't change channel.
+	
 	CMP R0, R1	;Check if R0 >= R1
-	BLT quit	;Do not change channel if not.
+	BLT error	;Do not change channel if not.
 	
 	;Call subroutine to apply T0,T1 to chosen channel
 	BL configureChannel
+	B quit
+
+error
+	BL LCD_config_dir
+	PUSH{R0,R1}
 	
+	MOVS R0, #CLEAR
+	MOVS R1, #0
+	BL LCD_command
+	
+	LDR R3, =errMessage
+	BL print_string
+	
+	POP{R0,R1}
+	BL Keypad_config_dir
+	
+	;Wait for next input here. Allows message to remain displayed
+	BL get_next_key_input
+		
 quit 
 
 	POP{R2-R6,PC}
 prompt		DCB		"Channel?",0
+errMessage	DCB		"T0 or T1 Invalid",0
 	ALIGN
 	END

@@ -1,13 +1,12 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;get_next_key_input.s
 ;Contiuously checks new key flag.
-;If flag is set, then it gets the key value from R7
-;And returns it in R6
+;If flag is set, then it gets the key value from R7 and returns it in R6
 ;Preconditions:
 ;	* None
 ;Postconditions:
 ;	* New key value is in R6
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  EXPORT get_next_key_input
 	 

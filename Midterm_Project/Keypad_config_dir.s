@@ -1,10 +1,13 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Keypad_config_dir.s
-;Performs the following initializations:
-;	* 
-;		- Configures direction of pins 0.1, 0.2, 0.3, 0.4, as input
-;		- Enables P0's interrupt
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Configures the direction of GPIO pins needed to read from keypad
+;Preconditions:
+;	* PIO0 pins 1,2,3,4 are configured as GPIO
+;Postconditions:
+;	* Configures direction of pins 0.1, 0.2, 0.3, 0.4 as input
+;	* Enable P0 interrupt
+;	* Clears data from row pins
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA program, CODE, READONLY
  EXPORT Keypad_config_dir
  IMPORT EnableP0Interrupt

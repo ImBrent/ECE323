@@ -3,13 +3,21 @@
 ;This subroutine will prompt the user for an input 0 - 9 corresponding to a memory entry
 ;If a memory entry exists corresponding to that input, then the memory entry will be
 ;	displayed on the LCD. T0 will be returned in R0, and T1 will be returned in R1.
+;Otherwise, if the entry does not exist, then a message will be displayed stating such,
+;	and no changes will be made to registers
+; If a key ACBD* is entered, then the subroutine will return with no changes to R0 or R1.
+;	The key entered will be in R7 and new key flag is set.
 ;Preconditions:
 ;	* R2 - Memory pointer - Points to beginning of memory segment
-;	* R4 - Memory offset  - Index of where least recent memory write is
-;								(Or, if memory not full, then it is next empty slot)
-;	* R7 - Status vector  - Bit 28 should be set if memory is full.
 ;Postconditions:
-;	* 
+;	* If ACBD* entered: 
+;		- Key entered is in R7 with new key flag set
+;	* If valid memory location entered:
+;		- R0,R1 loaded with values of T0 and T1 stored at that location.
+;		- T0 and T1 displayed to LCD
+;	* Otherwise, if undefined memory location entered:
+;		- Message displayed indicating as such.
+;		- R0,R1 unchanged.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  EXPORT memorySearch

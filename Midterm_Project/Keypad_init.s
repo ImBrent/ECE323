@@ -1,20 +1,19 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; keypad_init.s
+; Performs necessary pin and interrupt initializations to read from keypad
+; Preconditions:
+;	* None
+; Postconditions:
+;	* PIO0 pins 5,6,7,11 are configured for input
+;	* PIO0 is initialized to interrupt on rising edge as is enabled 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
  AREA PROGRAM, CODE, READONLY
  INCLUDE	LPC11xx.inc
  EXPORT Keypad_init
 	 
-IPR0	EQU		0xE000E400
-IPR7	EQU		IPR0 + 7 * 4
-	 
 Keypad_init
 	PUSH{R4-R6,LR}
-	
-	;Lower interrupt priority
-	LDR R4, =IPR7
-	LDR R5, [R4]
-	MOVS R6, #1
-	LSLS R6, R6, #30
-	ORRS R5, R5, R6
-	STR R5, [R4]
 	
 	LDR  R4, =(GPIO0DIR)	;set the direction of Port0 pins 1-4 as input
 	LDR R5, =0x1E

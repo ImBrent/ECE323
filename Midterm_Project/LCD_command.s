@@ -4,6 +4,13 @@
 ;On the LCD display
 ;If bit 0 of R1 is 1, then a data operation will be performed.
 ;Otherwise, a command is performed
+;Preconditions:
+;	* R0: Contains payload to be sent to LCD
+;	* R1: Contains 0 if payload is command, 1 if payload is data
+;	* Pins are configured for sending data to LCD
+;Postconditions:
+;	* Necessary command or data has been sent to LCD, and LCD
+;		should react accordingly
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
  AREA PROGRAM, CODE, READONLY

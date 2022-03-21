@@ -1,10 +1,14 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;get_key_num.s
 ;Gets key number of a key that is pressed on keypad
-;Returned:
-;	* R7: Bits 0-3: Detected key number
-;		  Bit 31: Set to 1 if new key detected. 0 otherwise.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Preconditions:
+;	* Pins configured for reading from keypad
+; Postconditions:
+;	* If a key is detected:
+;			- R7: Bits 0-3: Detected key number
+;		  		  Bit 31: Set to 1 if new key detected. 0 otherwise.
+;			-Otherwise, if no key detected, no changes made.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
  AREA program, CODE, READONLY
  EXPORT get_key_num

@@ -147,7 +147,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=457,212,842,768,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(250=-1,-1,-1,-1,0)(450=-1,-1,-1,-1,0)(311=-1,-1,-1,-1,0)(420=-1,-1,-1,-1,0)(421=-1,-1,-1,-1,0)(422=-1,-1,-1,-1,0)(107=-1,-1,-1,-1,0)(440=-1,-1,-1,-1,0)(431=-1,-1,-1,-1,0)(433=-1,-1,-1,-1,0)(434=-1,-1,-1,-1,0)(301=-1,-1,-1,-1,0)(470=-1,-1,-1,-1,0)(460=-1,-1,-1,-1,0)(321=-1,-1,-1,-1,0)(500=-1,-1,-1,-1,0)(511=-1,-1,-1,-1,0)(480=-1,-1,-1,-1,0)(490=-1,-1,-1,-1,0)(360=598,111,1348,768,0)(339=1044,345,1366,667,0)(340=603,331,925,653,0)(341=-1,-1,-1,-1,0)(342=-1,-1,-1,-1,0)(381=-1,-1,-1,-1,0)(261=-1,-1,-1,-1,0)(262=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(126=727,82,1253,587,0)(127=839,113,1365,618,0)(130=774,44,1300,549,0)(131=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(280=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=457,212,842,768,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(250=-1,-1,-1,-1,0)(450=-1,-1,-1,-1,0)(311=-1,-1,-1,-1,0)(420=-1,-1,-1,-1,0)(421=-1,-1,-1,-1,0)(422=-1,-1,-1,-1,0)(107=-1,-1,-1,-1,0)(440=-1,-1,-1,-1,0)(431=-1,-1,-1,-1,0)(433=-1,-1,-1,-1,0)(434=-1,-1,-1,-1,0)(301=-1,-1,-1,-1,0)(470=-1,-1,-1,-1,0)(460=-1,-1,-1,-1,0)(321=-1,-1,-1,-1,0)(500=-1,-1,-1,-1,0)(511=-1,-1,-1,-1,0)(480=-1,-1,-1,-1,0)(490=-1,-1,-1,-1,0)(360=598,111,1348,768,0)(339=1044,345,1366,667,0)(340=603,331,925,653,0)(341=-1,-1,-1,-1,0)(342=-1,-1,-1,-1,0)(381=-1,-1,-1,-1,0)(261=-1,-1,-1,-1,0)(262=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(126=239,73,765,578,0)(127=840,263,1366,768,0)(130=92,148,618,653,0)(131=718,151,1244,656,0)(160=-1,-1,-1,-1,0)(280=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -633,8 +633,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\processInputs.s</PathWithFileName>
-      <FilenameWithoutPath>processInputs.s</FilenameWithoutPath>
+      <PathWithFileName>.\capture_init.s</PathWithFileName>
+      <FilenameWithoutPath>capture_init.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -645,8 +645,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\memory_update.s</PathWithFileName>
-      <FilenameWithoutPath>memory_update.s</FilenameWithoutPath>
+      <PathWithFileName>.\processInputs.s</PathWithFileName>
+      <FilenameWithoutPath>processInputs.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -657,8 +657,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\capture_init.s</PathWithFileName>
-      <FilenameWithoutPath>capture_init.s</FilenameWithoutPath>
+      <PathWithFileName>.\memory_update.s</PathWithFileName>
+      <FilenameWithoutPath>memory_update.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -707,6 +707,30 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\TMR32B0MR3_Interrupt.s</PathWithFileName>
       <FilenameWithoutPath>TMR32B0MR3_Interrupt.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>41</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\TMR32B0CAP_INT.s</PathWithFileName>
+      <FilenameWithoutPath>TMR32B0CAP_INT.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>42</FileNumber>
+      <FileType>2</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\TIMER32_1_IRQHandler.s</PathWithFileName>
+      <FilenameWithoutPath>TIMER32_1_IRQHandler.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

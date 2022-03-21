@@ -30,12 +30,14 @@
 ".\objects\init_tmr16b0.o"
 ".\objects\init_tmr16b1.o"
 ".\objects\determine_prescale.o"
+".\objects\capture_init.o"
 ".\objects\processinputs.o"
 ".\objects\memory_update.o"
-".\objects\capture_init.o"
 ".\objects\timer32_0_irqhandler.o"
 ".\objects\capture_flag_handler.o"
 ".\objects\tmr32b0mr3_interrupt.o"
+".\objects\tmr32b0cap_int.o"
+".\objects\timer32_1_irqhandler.o"
 C:\Keil_v5\ARM\RV31\LIB\RTX_CM1.LIB
 --library_type=microlib --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

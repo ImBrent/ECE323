@@ -1,3 +1,12 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;LCD_init.s
+;Performs necessary initializations used to send data to LCD, and boots up LCD
+;Preconditions:
+;	* None
+;Postconditions:
+;	* PIO0_1,2,3,4 and PIO1_0,8 are configured as output GPIO pins
+;	* LCD is booted up and cleared.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  INCLUDE	LPC11xx.inc
  INCLUDE	Constants.inc
@@ -6,7 +15,7 @@
  IMPORT LCD_command	 
 	 
 LCD_init
-	PUSH{R0,R4,R5,LR}
+	PUSH{R0,R1,R4,R5,LR}
 	;========= LCD initialization============
 	LDR  R4, =(IOCON_PIO0_1)
 	MOVS R5, #0x0
@@ -69,6 +78,6 @@ LCD_init
 
 	;==== End of LCD initialization ===========================================
 	
-	POP {R0,R4,R5,PC}
+	POP {R0,R1,R4,R5,PC}
 	ALIGN
 	END

@@ -1,3 +1,12 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; wait_for_key_release.s
+; This subroutine will continuously scan whether a key is pressed
+; 	on the keypad. It will not return until a key is pressed.
+; Preconditions:
+;	* Pins configured for reading from keypad
+; Postconditions:
+;	* None
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA program, CODE, READONLY
  EXPORT wait_for_key_release
  INCLUDE LPC11xx.inc
@@ -19,7 +28,6 @@ waitForRelease
 	ANDS R1, R1, R2
 	CMP R1, R2
 	BNE waitForRelease
-
 
 	POP{R0-R2,R4-R5,PC}
 	ALIGN

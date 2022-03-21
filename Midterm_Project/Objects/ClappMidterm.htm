@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\ClappMidterm.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\ClappMidterm.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Wed Mar 16 14:26:13 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sat Mar 19 14:43:14 2022
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -17,13 +17,13 @@ Functions with no stack information
  <LI><a href="#[20]">Keypad_init</a>
  <LI><a href="#[22]">LCD_command</a>
  <LI><a href="#[1f]">LCD_init</a>
- <LI><a href="#[23]">BusyWait</a>
- <LI><a href="#[2d]">get_next_key_input</a>
  <LI><a href="#[32]">Divide</a>
+ <LI><a href="#[23]">BusyWait</a>
  <LI><a href="#[1c]">ConfigClock</a>
  <LI><a href="#[24]">print_string</a>
  <LI><a href="#[2f]">Key_num_to_ascii</a>
  <LI><a href="#[19]">PIOINT0_IRQHandler</a>
+ <LI><a href="#[2d]">get_next_key_input</a>
  <LI><a href="#[2e]">clear_new_key_flag</a>
  <LI><a href="#[29]">Print_Character</a>
  <LI><a href="#[2a]">EnterTx</a>
@@ -37,12 +37,14 @@ Functions with no stack information
  <LI><a href="#[38]">Init_TMR16B0</a>
  <LI><a href="#[39]">Init_TMR16B1</a>
  <LI><a href="#[35]">determine_prescale</a>
+ <LI><a href="#[1e]">capture_init</a>
  <LI><a href="#[21]">processInputs</a>
  <LI><a href="#[3a]">memory_update</a>
- <LI><a href="#[1e]">capture_init</a>
  <LI><a href="#[c]">TIMER32_0_IRQHandler</a>
  <LI><a href="#[3b]">capture_flag_handler</a>
  <LI><a href="#[3c]">TMR32B0MR3_Interrupt</a>
+ <LI><a href="#[3d]">TMR32B0CAP_INT</a>
+ <LI><a href="#[d]">TIMER32_1_IRQHandler</a>
  <LI><a href="#[2b]">LCD_config_dir</a>
  <LI><a href="#[2c]">Keypad_config_dir</a>
  <LI><a href="#[28]">EnableP0Interrupt</a>
@@ -86,7 +88,7 @@ Function Pointers
  <LI><a href="#[a]">TIMER16_0_IRQHandler</a> from startup_lpc11xx.o(.text) referenced from startup_lpc11xx.o(RESET)
  <LI><a href="#[b]">TIMER16_1_IRQHandler</a> from startup_lpc11xx.o(.text) referenced from startup_lpc11xx.o(RESET)
  <LI><a href="#[c]">TIMER32_0_IRQHandler</a> from timer32_0_irqhandler.o(PROGRAM) referenced from startup_lpc11xx.o(RESET)
- <LI><a href="#[d]">TIMER32_1_IRQHandler</a> from startup_lpc11xx.o(.text) referenced from startup_lpc11xx.o(RESET)
+ <LI><a href="#[d]">TIMER32_1_IRQHandler</a> from timer32_1_irqhandler.o(PROGRAM) referenced from startup_lpc11xx.o(RESET)
  <LI><a href="#[f]">UART_IRQHandler</a> from startup_lpc11xx.o(.text) referenced from startup_lpc11xx.o(RESET)
  <LI><a href="#[11]">USB_FIQHandler</a> from startup_lpc11xx.o(.text) referenced from startup_lpc11xx.o(RESET)
  <LI><a href="#[10]">USB_IRQHandler</a> from startup_lpc11xx.o(.text) referenced from startup_lpc11xx.o(RESET)
@@ -176,9 +178,6 @@ Global Symbols
 <P><STRONG><a name="[b]"></a>TIMER16_1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc11xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc11xx.o(RESET)
 </UL>
-<P><STRONG><a name="[d]"></a>TIMER32_1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc11xx.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_lpc11xx.o(RESET)
-</UL>
 <P><STRONG><a name="[f]"></a>UART_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_lpc11xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc11xx.o(RESET)
 </UL>
@@ -233,24 +232,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[23]"></a>BusyWait</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, busywait.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIOINT0_IRQHandler
-<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
-<LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
-</UL>
-
-<P><STRONG><a name="[2d]"></a>get_next_key_input</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, get_next_key_input.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
-<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
-<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
-<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
-</UL>
-
 <P><STRONG><a name="[32]"></a>Divide</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, divide.o(PROGRAM))
 <BR><BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;determine_prescale
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureChannel
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_decimal_to_LCD
+</UL>
+
+<P><STRONG><a name="[23]"></a>BusyWait</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, busywait.o(PROGRAM))
+<BR><BR>[Called By]<UL><LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIOINT0_IRQHandler
+<LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_command
+<LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
 </UL>
 
 <P><STRONG><a name="[1c]"></a>ConfigClock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, configclock.o(PROGRAM))
@@ -284,6 +275,14 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc11xx.o(RESET)
 </UL>
+<P><STRONG><a name="[2d]"></a>get_next_key_input</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, get_next_key_input.o(PROGRAM))
+<BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memorySearch
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnterTx
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
+</UL>
+
 <P><STRONG><a name="[2e]"></a>clear_new_key_flag</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, clear_new_key_flag.o(PROGRAM))
 <BR><BR>[Called By]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enterChannel
@@ -389,6 +388,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configureChannel
 </UL>
 
+<P><STRONG><a name="[1e]"></a>capture_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, capture_init.o(PROGRAM))
+<BR><BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
+</UL>
+
 <P><STRONG><a name="[21]"></a>processInputs</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, processinputs.o(PROGRAM))
 <BR><BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_update
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;capture_flag_handler
@@ -419,12 +422,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processInputs
 </UL>
 
-<P><STRONG><a name="[1e]"></a>capture_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, capture_init.o(PROGRAM))
-<BR><BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
-</UL>
-
 <P><STRONG><a name="[c]"></a>TIMER32_0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, timer32_0_irqhandler.o(PROGRAM))
 <BR><BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TMR32B0MR3_Interrupt
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TMR32B0CAP_INT
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc11xx.o(RESET)
 </UL>
@@ -442,6 +442,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER32_0_IRQHandler
 </UL>
 
+<P><STRONG><a name="[3d]"></a>TMR32B0CAP_INT</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, tmr32b0cap_int.o(PROGRAM))
+<BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER32_0_IRQHandler
+</UL>
+
+<P><STRONG><a name="[d]"></a>TIMER32_1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, timer32_1_irqhandler.o(PROGRAM))
+<BR>[Address Reference Count : 1]<UL><LI> startup_lpc11xx.o(RESET)
+</UL>
 <P><STRONG><a name="[2b]"></a>LCD_config_dir</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd_config_dir.o(program))
 <BR><BR>[Calls]<UL><LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableP0Interrupt
 </UL>

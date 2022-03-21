@@ -4,9 +4,13 @@
 ;The new value will be saved into Rx. If a key is pressed to switch to another
 ;function, then the subroutine will break and Rx will remain unchanged
 ;Preconditions:
-;	* x is stored in R5
+;	* x is stored in R5, where x is 0 or 1
 ;Postconditions:
-;	* Rx contains user entered value if user doesn't go to another function.
+;	* If user enters A,B,C,D,*:
+;		- Corresponding key number is in R7 with new key flag set
+;	* Otherwise, user entered a value:
+;		- Rx contains user entered value if user doesn't go to another function.
+;		- New key flag is cleared
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  INCLUDE LPC11xx.inc
@@ -68,18 +72,14 @@ getNextInput
 	
 	;Determine what to do with key input
 	CMP R6, #KEY_D ;Checking whether in row with A,B,C,D
-	BLE exit	   ;If yes, then get out of subroutine.
-
+		BLE exit	   ;If yes, then get out of subroutine.
 	CMP R6, #KEY_ASTERISK
-	BEQ exit			;If asterisk, leave subroutine w/o clearing flag
-	
+		BEQ exit			;If asterisk, leave subroutine w/o clearing flag
 	CMP R6, #KEY_POUND
-	BEQ pound_key		;If pound key, perform necessary logic
-	
+		BEQ pound_key		;If pound key, perform necessary logic
 digit
 	;Otherwise, key is a digit 0-9. 
 	;In this case, print the key and add the key to sum.
-	
 	BL clear_new_key_flag ;Clear flag
 	
 	;If key is 0 and number of keys entered is 0, then don't do anything
@@ -87,7 +87,6 @@ digit
 	BNE printNum
 	CMP Num_Chars, #0
 	BEQ getNextInput
-	
 printNum
 	PUSH{R5}
 	BL Key_num_to_ascii	;Convert from Key num to ASCII. Ascii is in R5
@@ -106,7 +105,6 @@ printNum
 
 	;Increment number of entered characters
 	ADDS Num_Chars, Num_Chars, #1
-
 	B getNextInput
 
 pound_key
@@ -164,10 +162,8 @@ checkUpper	;Check upper bound. Must be <=48,000,000
 assignT0	
 	MOVS R0, Entered_Value ;Assign entered T0 to R0
 	B exit
-	
 assignT1
 	MOVS R1, Entered_Value	;Assign entered T1 to R1
-	
 exit
 	
 	POP{R2-R6, PC}

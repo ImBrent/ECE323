@@ -1,3 +1,10 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; main.s
+; Main code for program.
+;	* Allocates global memory space on stack, and initializes data to 0
+;	* Performs initializations for SYSAHBCLKCTRL, timers, channels, GPIOs, IOCONS
+;	* After initializations, passes control of the program to processInputs.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA FLASH, CODE, READONLY
  EXPORT __main
  INCLUDE GlobalVariables.inc

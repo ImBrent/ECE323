@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;key_num_to_ascii.s
-;This subroutine receives a key number as input.
-;It returns the ASCII code corresponding to that key number
+;This subroutine maps a key number to its corresponding ASCII code
+;It returns the ASCII code corresponding to the input key number
 ;Preconditions:
 ;	* Key number is in R6
 ;Postconditions:

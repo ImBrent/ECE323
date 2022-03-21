@@ -7,6 +7,7 @@ Section Cross References
     startup_lpc11xx.o(RESET) refers to startup_lpc11xx.o(STACK) for __initial_sp
     startup_lpc11xx.o(RESET) refers to startup_lpc11xx.o(.text) for Reset_Handler
     startup_lpc11xx.o(RESET) refers to timer32_0_irqhandler.o(PROGRAM) for TIMER32_0_IRQHandler
+    startup_lpc11xx.o(RESET) refers to timer32_1_irqhandler.o(PROGRAM) for TIMER32_1_IRQHandler
     startup_lpc11xx.o(RESET) refers to pioint0_irqhandler.o(PROGRAM) for PIOINT0_IRQHandler
     startup_lpc11xx.o(.text) refers to main.o(FLASH) for SystemInit
     main.o(FLASH) refers (Special) to print_string.o(PROGRAM) for print_string
@@ -22,18 +23,11 @@ Section Cross References
     print_string.o(PROGRAM) refers to lcd_command.o(PROGRAM) for LCD_command
     lcd_config_dir.o(program) refers to disablep0interrupt.o(program) for DisableP0Interrupt
     keypad_config_dir.o(program) refers to enablep0interrupt.o(program) for EnableP0Interrupt
-    pioint0_irqhandler.o(PROGRAM) refers (Special) to keypad_config_dir.o(program) for Keypad_config_dir
-    pioint0_irqhandler.o(PROGRAM) refers (Special) to keypad_init.o(PROGRAM) for Keypad_init
-    pioint0_irqhandler.o(PROGRAM) refers (Special) to lcd_command.o(PROGRAM) for LCD_command
-    pioint0_irqhandler.o(PROGRAM) refers (Special) to lcd_config_dir.o(program) for LCD_config_dir
-    pioint0_irqhandler.o(PROGRAM) refers (Special) to lcd_init.o(PROGRAM) for LCD_init
     pioint0_irqhandler.o(PROGRAM) refers to disablep0interrupt.o(program) for DisableP0Interrupt
     pioint0_irqhandler.o(PROGRAM) refers to busywait.o(PROGRAM) for BusyWait
     pioint0_irqhandler.o(PROGRAM) refers to get_key_num.o(program) for get_key_num
     pioint0_irqhandler.o(PROGRAM) refers to wait_for_key_release.o(program) for wait_for_key_release
     pioint0_irqhandler.o(PROGRAM) refers to enablep0interrupt.o(program) for EnableP0Interrupt
-    print_character.o(PROGRAM) refers (Special) to keypad_config_dir.o(program) for Keypad_config_dir
-    print_character.o(PROGRAM) refers (Special) to lcd_config_dir.o(program) for LCD_config_dir
     print_character.o(PROGRAM) refers to lcd_command.o(PROGRAM) for LCD_command
     entertx.o(PROGRAM) refers to lcd_config_dir.o(program) for LCD_config_dir
     entertx.o(PROGRAM) refers to lcd_command.o(PROGRAM) for LCD_command
@@ -91,11 +85,8 @@ Section Cross References
     memory_update.o(PROGRAM) refers to key_num_to_ascii.o(PROGRAM) for Key_num_to_ascii
     memory_update.o(PROGRAM) refers to print_character.o(PROGRAM) for Print_Character
     memory_update.o(PROGRAM) refers to print_decimal_to_lcd.o(PROGRAM) for print_decimal_to_LCD
-    timer32_0_irqhandler.o(PROGRAM) refers (Special) to keypad_config_dir.o(program) for Keypad_config_dir
-    timer32_0_irqhandler.o(PROGRAM) refers (Special) to lcd_command.o(PROGRAM) for LCD_command
-    timer32_0_irqhandler.o(PROGRAM) refers (Special) to lcd_config_dir.o(program) for LCD_config_dir
-    timer32_0_irqhandler.o(PROGRAM) refers (Special) to print_string.o(PROGRAM) for print_string
     timer32_0_irqhandler.o(PROGRAM) refers to tmr32b0mr3_interrupt.o(PROGRAM) for TMR32B0MR3_Interrupt
+    timer32_0_irqhandler.o(PROGRAM) refers to tmr32b0cap_int.o(PROGRAM) for TMR32B0CAP_INT
     capture_flag_handler.o(PROGRAM) refers (Special) to disablep0interrupt.o(program) for DisableP0Interrupt
     capture_flag_handler.o(PROGRAM) refers (Special) to enablep0interrupt.o(program) for EnableP0Interrupt
     capture_flag_handler.o(PROGRAM) refers to lcd_config_dir.o(program) for LCD_config_dir
@@ -140,6 +131,8 @@ Image Symbol Table
     PIOINT0_IRQHandler.s                     0x00000000   Number         0  pioint0_irqhandler.o ABSOLUTE
     Print_Character.s                        0x00000000   Number         0  print_character.o ABSOLUTE
     TIMER32_0_IRQHandler.s                   0x00000000   Number         0  timer32_0_irqhandler.o ABSOLUTE
+    TIMER32_1_IRQHandler.s                   0x00000000   Number         0  timer32_1_irqhandler.o ABSOLUTE
+    TMR32B0CAP_INT.s                         0x00000000   Number         0  tmr32b0cap_int.o ABSOLUTE
     TMR32B0MR3_Interrupt.s                   0x00000000   Number         0  tmr32b0mr3_interrupt.o ABSOLUTE
     capture_flag_handler.s                   0x00000000   Number         0  capture_flag_handler.o ABSOLUTE
     capture_init.s                           0x00000000   Number         0  capture_init.o ABSOLUTE
@@ -161,58 +154,61 @@ Image Symbol Table
     RESET                                    0x00000000   Section      192  startup_lpc11xx.o(RESET)
     .text                                    0x000000c0   Section       28  startup_lpc11xx.o(.text)
     FLASH                                    0x000000dc   Section       60  main.o(FLASH)
-    PROGRAM                                  0x00000118   Section      156  keypad_init.o(PROGRAM)
-    PROGRAM                                  0x000001b4   Section      152  lcd_command.o(PROGRAM)
-    PROGRAM                                  0x0000024c   Section      152  lcd_init.o(PROGRAM)
-    PROGRAM                                  0x000002e4   Section        8  busywait.o(PROGRAM)
-    PROGRAM                                  0x000002ec   Section       16  get_next_key_input.o(PROGRAM)
+    PROGRAM                                  0x00000118   Section      140  keypad_init.o(PROGRAM)
+    PROGRAM                                  0x000001a4   Section      152  lcd_command.o(PROGRAM)
+    PROGRAM                                  0x0000023c   Section      152  lcd_init.o(PROGRAM)
+    PROGRAM                                  0x000002d4   Section       36  divide.o(PROGRAM)
     .ARM.__at_0x02FC                         0x000002fc   Section        4  startup_lpc11xx.o(.ARM.__at_0x02FC)
-    PROGRAM                                  0x00000300   Section       36  divide.o(PROGRAM)
-    PROGRAM                                  0x00000324   Section       24  configclock.o(PROGRAM)
-    PROGRAM                                  0x0000033c   Section       50  print_string.o(PROGRAM)
-    PROGRAM                                  0x00000370   Section       28  key_num_to_ascii.o(PROGRAM)
-    Chars                                    0x00000378   Data          16  key_num_to_ascii.o(PROGRAM)
-    PROGRAM                                  0x0000038c   Section       40  pioint0_irqhandler.o(PROGRAM)
-    PROGRAM                                  0x000003b4   Section       10  clear_new_key_flag.o(PROGRAM)
-    PROGRAM                                  0x000003c0   Section       20  print_character.o(PROGRAM)
-    PROGRAM                                  0x000003d4   Section      224  entertx.o(PROGRAM)
-    prompt                                   0x000004a0   Data           8  entertx.o(PROGRAM)
-    T0Label                                  0x000004b4   Data           4  memorysearch.o(PROGRAM)
-    PROGRAM                                  0x000004b4   Section      304  memorysearch.o(PROGRAM)
-    T1Label                                  0x000004b8   Data           4  memorysearch.o(PROGRAM)
-    recallMemoryPrompt                       0x000005ac   Data          15  memorysearch.o(PROGRAM)
-    memoryUndefinedMessage                   0x000005bb   Data          14  memorysearch.o(PROGRAM)
-    PROGRAM                                  0x000005e4   Section       72  print_decimal_to_lcd.o(PROGRAM)
-    PROGRAM                                  0x0000062c   Section      152  enterchannel.o(PROGRAM)
-    prompt                                   0x000006b4   Data           9  enterchannel.o(PROGRAM)
-    PROGRAM                                  0x000006c4   Section      216  configurechannel.o(PROGRAM)
-    PROGRAM                                  0x0000079c   Section       20  channel_init.o(PROGRAM)
-    PROGRAM                                  0x000007b0   Section       88  init_tmr32b0.o(PROGRAM)
-    PROGRAM                                  0x00000808   Section       72  init_tmr32b1.o(PROGRAM)
-    PROGRAM                                  0x00000850   Section       72  init_tmr16b0.o(PROGRAM)
-    PROGRAM                                  0x00000898   Section       68  init_tmr16b1.o(PROGRAM)
-    PROGRAM                                  0x000008dc   Section       40  determine_prescale.o(PROGRAM)
-    PROGRAM                                  0x00000904   Section      152  processinputs.o(PROGRAM)
-    myName                                   0x0000098a   Data           7  processinputs.o(PROGRAM)
-    T0Label                                  0x0000099c   Data           4  memory_update.o(PROGRAM)
-    PROGRAM                                  0x0000099c   Section      348  memory_update.o(PROGRAM)
-    T1Label                                  0x000009a0   Data           4  memory_update.o(PROGRAM)
-    memoryLocationPrompt                     0x00000aa6   Data          17  memory_update.o(PROGRAM)
-    undefinedPrompt                          0x00000ab7   Data          17  memory_update.o(PROGRAM)
-    T1LargerPrompt                           0x00000ac8   Data          16  memory_update.o(PROGRAM)
-    PROGRAM                                  0x00000af8   Section       84  capture_init.o(PROGRAM)
-    PROGRAM                                  0x00000b4c   Section      200  timer32_0_irqhandler.o(PROGRAM)
-    PROGRAM                                  0x00000c14   Section      132  capture_flag_handler.o(PROGRAM)
-    T0string                                 0x00000c76   Data           4  capture_flag_handler.o(PROGRAM)
-    T1string                                 0x00000c7a   Data           4  capture_flag_handler.o(PROGRAM)
-    PROGRAM                                  0x00000c98   Section       40  tmr32b0mr3_interrupt.o(PROGRAM)
-    program                                  0x00000cc0   Section       40  lcd_config_dir.o(program)
-    program                                  0x00000ce8   Section       40  keypad_config_dir.o(program)
-    program                                  0x00000d10   Section       28  enablep0interrupt.o(program)
-    program                                  0x00000d2c   Section       28  disablep0interrupt.o(program)
-    program                                  0x00000d48   Section       28  wait_for_key_release.o(program)
-    program                                  0x00000d64   Section       96  get_key_num.o(program)
-    row_pins                                 0x00000db2   Data           4  get_key_num.o(program)
+    PROGRAM                                  0x00000300   Section        8  busywait.o(PROGRAM)
+    PROGRAM                                  0x00000308   Section       24  configclock.o(PROGRAM)
+    PROGRAM                                  0x00000320   Section       50  print_string.o(PROGRAM)
+    PROGRAM                                  0x00000354   Section       28  key_num_to_ascii.o(PROGRAM)
+    Chars                                    0x0000035c   Data          16  key_num_to_ascii.o(PROGRAM)
+    PROGRAM                                  0x00000370   Section       36  pioint0_irqhandler.o(PROGRAM)
+    PROGRAM                                  0x00000394   Section       16  get_next_key_input.o(PROGRAM)
+    PROGRAM                                  0x000003a4   Section       10  clear_new_key_flag.o(PROGRAM)
+    PROGRAM                                  0x000003b0   Section       12  print_character.o(PROGRAM)
+    PROGRAM                                  0x000003bc   Section      224  entertx.o(PROGRAM)
+    prompt                                   0x00000488   Data           8  entertx.o(PROGRAM)
+    T0Label                                  0x0000049c   Data           4  memorysearch.o(PROGRAM)
+    PROGRAM                                  0x0000049c   Section      304  memorysearch.o(PROGRAM)
+    T1Label                                  0x000004a0   Data           4  memorysearch.o(PROGRAM)
+    recallMemoryPrompt                       0x00000594   Data          15  memorysearch.o(PROGRAM)
+    memoryUndefinedMessage                   0x000005a3   Data          14  memorysearch.o(PROGRAM)
+    PROGRAM                                  0x000005cc   Section       72  print_decimal_to_lcd.o(PROGRAM)
+    PROGRAM                                  0x00000614   Section      216  enterchannel.o(PROGRAM)
+    prompt                                   0x000006c8   Data           9  enterchannel.o(PROGRAM)
+    errMessage                               0x000006d1   Data          17  enterchannel.o(PROGRAM)
+    PROGRAM                                  0x000006ec   Section      272  configurechannel.o(PROGRAM)
+    PROGRAM                                  0x000007fc   Section       20  channel_init.o(PROGRAM)
+    PROGRAM                                  0x00000810   Section       80  init_tmr32b0.o(PROGRAM)
+    PROGRAM                                  0x00000860   Section       80  init_tmr32b1.o(PROGRAM)
+    PROGRAM                                  0x000008b0   Section       48  init_tmr16b0.o(PROGRAM)
+    PROGRAM                                  0x000008e0   Section       44  init_tmr16b1.o(PROGRAM)
+    PROGRAM                                  0x0000090c   Section       20  determine_prescale.o(PROGRAM)
+    PROGRAM                                  0x00000920   Section      108  capture_init.o(PROGRAM)
+    PROGRAM                                  0x0000098c   Section      148  processinputs.o(PROGRAM)
+    myName                                   0x00000a10   Data           7  processinputs.o(PROGRAM)
+    T0Label                                  0x00000a20   Data           4  memory_update.o(PROGRAM)
+    PROGRAM                                  0x00000a20   Section      348  memory_update.o(PROGRAM)
+    T1Label                                  0x00000a24   Data           4  memory_update.o(PROGRAM)
+    memoryLocationPrompt                     0x00000b2a   Data          17  memory_update.o(PROGRAM)
+    undefinedPrompt                          0x00000b3b   Data          17  memory_update.o(PROGRAM)
+    T1LargerPrompt                           0x00000b4c   Data          16  memory_update.o(PROGRAM)
+    PROGRAM                                  0x00000b7c   Section       96  timer32_0_irqhandler.o(PROGRAM)
+    PROGRAM                                  0x00000bdc   Section      132  capture_flag_handler.o(PROGRAM)
+    T0string                                 0x00000c3e   Data           4  capture_flag_handler.o(PROGRAM)
+    T1string                                 0x00000c42   Data           4  capture_flag_handler.o(PROGRAM)
+    PROGRAM                                  0x00000c60   Section       56  tmr32b0mr3_interrupt.o(PROGRAM)
+    PROGRAM                                  0x00000c98   Section      156  tmr32b0cap_int.o(PROGRAM)
+    PROGRAM                                  0x00000d34   Section       60  timer32_1_irqhandler.o(PROGRAM)
+    program                                  0x00000d70   Section       40  lcd_config_dir.o(program)
+    program                                  0x00000d98   Section       40  keypad_config_dir.o(program)
+    program                                  0x00000dc0   Section       28  enablep0interrupt.o(program)
+    program                                  0x00000ddc   Section       28  disablep0interrupt.o(program)
+    program                                  0x00000df8   Section       28  wait_for_key_release.o(program)
+    program                                  0x00000e14   Section       96  get_key_num.o(program)
+    row_pins                                 0x00000e62   Data           4  get_key_num.o(program)
     STACK                                    0x10000000   Section      512  startup_lpc11xx.o(STACK)
 
     Global Symbols
@@ -240,7 +236,6 @@ Image Symbol Table
     SSP1_IRQHandler                          0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
     TIMER16_0_IRQHandler                     0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
     TIMER16_1_IRQHandler                     0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
-    TIMER32_1_IRQHandler                     0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
     UART_IRQHandler                          0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
     USB_FIQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
     USB_IRQHandler                           0x000000d3   Thumb Code     0  startup_lpc11xx.o(.text)
@@ -249,40 +244,42 @@ Image Symbol Table
     SystemInit                               0x000000dd   Thumb Code     0  main.o(FLASH)
     __main                                   0x000000dd   Thumb Code     0  main.o(FLASH)
     Keypad_init                              0x00000119   Thumb Code     0  keypad_init.o(PROGRAM)
-    LCD_command                              0x000001b5   Thumb Code     0  lcd_command.o(PROGRAM)
-    LCD_init                                 0x00000255   Thumb Code     0  lcd_init.o(PROGRAM)
-    BusyWait                                 0x000002e5   Thumb Code     0  busywait.o(PROGRAM)
-    get_next_key_input                       0x000002ed   Thumb Code     0  get_next_key_input.o(PROGRAM)
-    Divide                                   0x00000301   Thumb Code     0  divide.o(PROGRAM)
-    ConfigClock                              0x00000325   Thumb Code     0  configclock.o(PROGRAM)
-    print_string                             0x00000345   Thumb Code     0  print_string.o(PROGRAM)
-    Key_num_to_ascii                         0x00000371   Thumb Code     0  key_num_to_ascii.o(PROGRAM)
-    PIOINT0_IRQHandler                       0x0000038d   Thumb Code     0  pioint0_irqhandler.o(PROGRAM)
-    clear_new_key_flag                       0x000003b5   Thumb Code     0  clear_new_key_flag.o(PROGRAM)
-    Print_Character                          0x000003c9   Thumb Code     0  print_character.o(PROGRAM)
-    EnterTx                                  0x000003dd   Thumb Code     0  entertx.o(PROGRAM)
-    memorySearch                             0x000004bd   Thumb Code     0  memorysearch.o(PROGRAM)
-    print_decimal_to_LCD                     0x000005ed   Thumb Code     0  print_decimal_to_lcd.o(PROGRAM)
-    enterChannel                             0x00000635   Thumb Code     0  enterchannel.o(PROGRAM)
-    configureChannel                         0x000006c5   Thumb Code     0  configurechannel.o(PROGRAM)
-    channel_init                             0x0000079d   Thumb Code     0  channel_init.o(PROGRAM)
-    Init_TMR32B0                             0x000007b1   Thumb Code     0  init_tmr32b0.o(PROGRAM)
-    Init_TMR32B1                             0x00000809   Thumb Code     0  init_tmr32b1.o(PROGRAM)
-    Init_TMR16B0                             0x00000851   Thumb Code     0  init_tmr16b0.o(PROGRAM)
-    Init_TMR16B1                             0x00000899   Thumb Code     0  init_tmr16b1.o(PROGRAM)
-    determine_prescale                       0x000008dd   Thumb Code     0  determine_prescale.o(PROGRAM)
-    processInputs                            0x0000090d   Thumb Code     0  processinputs.o(PROGRAM)
-    memory_update                            0x000009a5   Thumb Code     0  memory_update.o(PROGRAM)
-    capture_init                             0x00000af9   Thumb Code     0  capture_init.o(PROGRAM)
-    TIMER32_0_IRQHandler                     0x00000b4d   Thumb Code     0  timer32_0_irqhandler.o(PROGRAM)
-    capture_flag_handler                     0x00000c1d   Thumb Code     0  capture_flag_handler.o(PROGRAM)
-    TMR32B0MR3_Interrupt                     0x00000c99   Thumb Code     0  tmr32b0mr3_interrupt.o(PROGRAM)
-    LCD_config_dir                           0x00000cc1   Thumb Code     0  lcd_config_dir.o(program)
-    Keypad_config_dir                        0x00000ce9   Thumb Code     0  keypad_config_dir.o(program)
-    EnableP0Interrupt                        0x00000d11   Thumb Code     0  enablep0interrupt.o(program)
-    DisableP0Interrupt                       0x00000d2d   Thumb Code     0  disablep0interrupt.o(program)
-    wait_for_key_release                     0x00000d49   Thumb Code     0  wait_for_key_release.o(program)
-    get_key_num                              0x00000d65   Thumb Code     0  get_key_num.o(program)
+    LCD_command                              0x000001a5   Thumb Code     0  lcd_command.o(PROGRAM)
+    LCD_init                                 0x00000245   Thumb Code     0  lcd_init.o(PROGRAM)
+    Divide                                   0x000002d5   Thumb Code     0  divide.o(PROGRAM)
+    BusyWait                                 0x00000301   Thumb Code     0  busywait.o(PROGRAM)
+    ConfigClock                              0x00000309   Thumb Code     0  configclock.o(PROGRAM)
+    print_string                             0x00000329   Thumb Code     0  print_string.o(PROGRAM)
+    Key_num_to_ascii                         0x00000355   Thumb Code     0  key_num_to_ascii.o(PROGRAM)
+    PIOINT0_IRQHandler                       0x00000371   Thumb Code     0  pioint0_irqhandler.o(PROGRAM)
+    get_next_key_input                       0x00000395   Thumb Code     0  get_next_key_input.o(PROGRAM)
+    clear_new_key_flag                       0x000003a5   Thumb Code     0  clear_new_key_flag.o(PROGRAM)
+    Print_Character                          0x000003b1   Thumb Code     0  print_character.o(PROGRAM)
+    EnterTx                                  0x000003c5   Thumb Code     0  entertx.o(PROGRAM)
+    memorySearch                             0x000004a5   Thumb Code     0  memorysearch.o(PROGRAM)
+    print_decimal_to_LCD                     0x000005d5   Thumb Code     0  print_decimal_to_lcd.o(PROGRAM)
+    enterChannel                             0x0000061d   Thumb Code     0  enterchannel.o(PROGRAM)
+    configureChannel                         0x000006ed   Thumb Code     0  configurechannel.o(PROGRAM)
+    channel_init                             0x000007fd   Thumb Code     0  channel_init.o(PROGRAM)
+    Init_TMR32B0                             0x00000811   Thumb Code     0  init_tmr32b0.o(PROGRAM)
+    Init_TMR32B1                             0x00000861   Thumb Code     0  init_tmr32b1.o(PROGRAM)
+    Init_TMR16B0                             0x000008b1   Thumb Code     0  init_tmr16b0.o(PROGRAM)
+    Init_TMR16B1                             0x000008e1   Thumb Code     0  init_tmr16b1.o(PROGRAM)
+    determine_prescale                       0x0000090d   Thumb Code     0  determine_prescale.o(PROGRAM)
+    capture_init                             0x00000921   Thumb Code     0  capture_init.o(PROGRAM)
+    processInputs                            0x00000995   Thumb Code     0  processinputs.o(PROGRAM)
+    memory_update                            0x00000a29   Thumb Code     0  memory_update.o(PROGRAM)
+    TIMER32_0_IRQHandler                     0x00000b7d   Thumb Code     0  timer32_0_irqhandler.o(PROGRAM)
+    capture_flag_handler                     0x00000be5   Thumb Code     0  capture_flag_handler.o(PROGRAM)
+    TMR32B0MR3_Interrupt                     0x00000c61   Thumb Code     0  tmr32b0mr3_interrupt.o(PROGRAM)
+    TMR32B0CAP_INT                           0x00000c99   Thumb Code     0  tmr32b0cap_int.o(PROGRAM)
+    TIMER32_1_IRQHandler                     0x00000d35   Thumb Code     0  timer32_1_irqhandler.o(PROGRAM)
+    LCD_config_dir                           0x00000d71   Thumb Code     0  lcd_config_dir.o(program)
+    Keypad_config_dir                        0x00000d99   Thumb Code     0  keypad_config_dir.o(program)
+    EnableP0Interrupt                        0x00000dc1   Thumb Code     0  enablep0interrupt.o(program)
+    DisableP0Interrupt                       0x00000ddd   Thumb Code     0  disablep0interrupt.o(program)
+    wait_for_key_release                     0x00000df9   Thumb Code     0  wait_for_key_release.o(program)
+    get_key_num                              0x00000e15   Thumb Code     0  get_key_num.o(program)
     __initial_sp                             0x10000200   Data           0  startup_lpc11xx.o(STACK)
 
 
@@ -293,61 +290,64 @@ Memory Map of the image
 
   Image Entry point : 0x000000c1
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00000dc4, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000e74, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000dc4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000e74, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000000   0x000000c0   Data   RO            3    RESET               startup_lpc11xx.o
     0x000000c0   0x000000c0   0x0000001c   Code   RO            5  * .text               startup_lpc11xx.o
     0x000000dc   0x000000dc   0x0000003c   Code   RO           13  * FLASH               main.o
-    0x00000118   0x00000118   0x0000009c   Code   RO           16    PROGRAM             keypad_init.o
-    0x000001b4   0x000001b4   0x00000098   Code   RO           19    PROGRAM             lcd_command.o
-    0x0000024c   0x0000024c   0x00000098   Code   RO           22    PROGRAM             lcd_init.o
-    0x000002e4   0x000002e4   0x00000008   Code   RO           28    PROGRAM             busywait.o
-    0x000002ec   0x000002ec   0x00000010   Code   RO           61    PROGRAM             get_next_key_input.o
+    0x00000118   0x00000118   0x0000008c   Code   RO           16    PROGRAM             keypad_init.o
+    0x000001a4   0x000001a4   0x00000098   Code   RO           19    PROGRAM             lcd_command.o
+    0x0000023c   0x0000023c   0x00000098   Code   RO           22    PROGRAM             lcd_init.o
+    0x000002d4   0x000002d4   0x00000024   Code   RO           25    PROGRAM             divide.o
+    0x000002f8   0x000002f8   0x00000004   PAD
     0x000002fc   0x000002fc   0x00000004   Code   RO            4    .ARM.__at_0x02FC    startup_lpc11xx.o
-    0x00000300   0x00000300   0x00000024   Code   RO           25    PROGRAM             divide.o
-    0x00000324   0x00000324   0x00000018   Code   RO           31    PROGRAM             configclock.o
-    0x0000033c   0x0000033c   0x00000032   Code   RO           34    PROGRAM             print_string.o
-    0x0000036e   0x0000036e   0x00000002   PAD
-    0x00000370   0x00000370   0x0000001c   Code   RO           49    PROGRAM             key_num_to_ascii.o
-    0x0000038c   0x0000038c   0x00000028   Code   RO           52    PROGRAM             pioint0_irqhandler.o
-    0x000003b4   0x000003b4   0x0000000a   Code   RO           64    PROGRAM             clear_new_key_flag.o
-    0x000003be   0x000003be   0x00000002   PAD
-    0x000003c0   0x000003c0   0x00000014   Code   RO           67    PROGRAM             print_character.o
-    0x000003d4   0x000003d4   0x000000e0   Code   RO           70    PROGRAM             entertx.o
-    0x000004b4   0x000004b4   0x00000130   Code   RO           73    PROGRAM             memorysearch.o
-    0x000005e4   0x000005e4   0x00000048   Code   RO           76    PROGRAM             print_decimal_to_lcd.o
-    0x0000062c   0x0000062c   0x00000098   Code   RO           79    PROGRAM             enterchannel.o
-    0x000006c4   0x000006c4   0x000000d8   Code   RO           82    PROGRAM             configurechannel.o
-    0x0000079c   0x0000079c   0x00000014   Code   RO           85    PROGRAM             channel_init.o
-    0x000007b0   0x000007b0   0x00000058   Code   RO           88    PROGRAM             init_tmr32b0.o
-    0x00000808   0x00000808   0x00000048   Code   RO           91    PROGRAM             init_tmr32b1.o
-    0x00000850   0x00000850   0x00000048   Code   RO           94    PROGRAM             init_tmr16b0.o
-    0x00000898   0x00000898   0x00000044   Code   RO           97    PROGRAM             init_tmr16b1.o
-    0x000008dc   0x000008dc   0x00000028   Code   RO          100    PROGRAM             determine_prescale.o
-    0x00000904   0x00000904   0x00000098   Code   RO          103    PROGRAM             processinputs.o
-    0x0000099c   0x0000099c   0x0000015c   Code   RO          106    PROGRAM             memory_update.o
-    0x00000af8   0x00000af8   0x00000054   Code   RO          109    PROGRAM             capture_init.o
-    0x00000b4c   0x00000b4c   0x000000c8   Code   RO          112    PROGRAM             timer32_0_irqhandler.o
-    0x00000c14   0x00000c14   0x00000084   Code   RO          115    PROGRAM             capture_flag_handler.o
-    0x00000c98   0x00000c98   0x00000028   Code   RO          118    PROGRAM             tmr32b0mr3_interrupt.o
-    0x00000cc0   0x00000cc0   0x00000028   Code   RO           37    program             lcd_config_dir.o
-    0x00000ce8   0x00000ce8   0x00000028   Code   RO           40    program             keypad_config_dir.o
-    0x00000d10   0x00000d10   0x0000001c   Code   RO           43    program             enablep0interrupt.o
-    0x00000d2c   0x00000d2c   0x0000001c   Code   RO           46    program             disablep0interrupt.o
-    0x00000d48   0x00000d48   0x0000001c   Code   RO           55    program             wait_for_key_release.o
-    0x00000d64   0x00000d64   0x00000060   Code   RO           58    program             get_key_num.o
+    0x00000300   0x00000300   0x00000008   Code   RO           28    PROGRAM             busywait.o
+    0x00000308   0x00000308   0x00000018   Code   RO           31    PROGRAM             configclock.o
+    0x00000320   0x00000320   0x00000032   Code   RO           34    PROGRAM             print_string.o
+    0x00000352   0x00000352   0x00000002   PAD
+    0x00000354   0x00000354   0x0000001c   Code   RO           49    PROGRAM             key_num_to_ascii.o
+    0x00000370   0x00000370   0x00000024   Code   RO           52    PROGRAM             pioint0_irqhandler.o
+    0x00000394   0x00000394   0x00000010   Code   RO           61    PROGRAM             get_next_key_input.o
+    0x000003a4   0x000003a4   0x0000000a   Code   RO           64    PROGRAM             clear_new_key_flag.o
+    0x000003ae   0x000003ae   0x00000002   PAD
+    0x000003b0   0x000003b0   0x0000000c   Code   RO           67    PROGRAM             print_character.o
+    0x000003bc   0x000003bc   0x000000e0   Code   RO           70    PROGRAM             entertx.o
+    0x0000049c   0x0000049c   0x00000130   Code   RO           73    PROGRAM             memorysearch.o
+    0x000005cc   0x000005cc   0x00000048   Code   RO           76    PROGRAM             print_decimal_to_lcd.o
+    0x00000614   0x00000614   0x000000d8   Code   RO           79    PROGRAM             enterchannel.o
+    0x000006ec   0x000006ec   0x00000110   Code   RO           82    PROGRAM             configurechannel.o
+    0x000007fc   0x000007fc   0x00000014   Code   RO           85    PROGRAM             channel_init.o
+    0x00000810   0x00000810   0x00000050   Code   RO           88    PROGRAM             init_tmr32b0.o
+    0x00000860   0x00000860   0x00000050   Code   RO           91    PROGRAM             init_tmr32b1.o
+    0x000008b0   0x000008b0   0x00000030   Code   RO           94    PROGRAM             init_tmr16b0.o
+    0x000008e0   0x000008e0   0x0000002c   Code   RO           97    PROGRAM             init_tmr16b1.o
+    0x0000090c   0x0000090c   0x00000014   Code   RO          100    PROGRAM             determine_prescale.o
+    0x00000920   0x00000920   0x0000006c   Code   RO          103    PROGRAM             capture_init.o
+    0x0000098c   0x0000098c   0x00000094   Code   RO          106    PROGRAM             processinputs.o
+    0x00000a20   0x00000a20   0x0000015c   Code   RO          109    PROGRAM             memory_update.o
+    0x00000b7c   0x00000b7c   0x00000060   Code   RO          112    PROGRAM             timer32_0_irqhandler.o
+    0x00000bdc   0x00000bdc   0x00000084   Code   RO          115    PROGRAM             capture_flag_handler.o
+    0x00000c60   0x00000c60   0x00000038   Code   RO          118    PROGRAM             tmr32b0mr3_interrupt.o
+    0x00000c98   0x00000c98   0x0000009c   Code   RO          121    PROGRAM             tmr32b0cap_int.o
+    0x00000d34   0x00000d34   0x0000003c   Code   RO          124    PROGRAM             timer32_1_irqhandler.o
+    0x00000d70   0x00000d70   0x00000028   Code   RO           37    program             lcd_config_dir.o
+    0x00000d98   0x00000d98   0x00000028   Code   RO           40    program             keypad_config_dir.o
+    0x00000dc0   0x00000dc0   0x0000001c   Code   RO           43    program             enablep0interrupt.o
+    0x00000ddc   0x00000ddc   0x0000001c   Code   RO           46    program             disablep0interrupt.o
+    0x00000df8   0x00000df8   0x0000001c   Code   RO           55    program             wait_for_key_release.o
+    0x00000e14   0x00000e14   0x00000060   Code   RO           58    program             get_key_num.o
 
 
-    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x00000dc4, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x10000000, Load base: 0x00000e74, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x10000000, Load base: 0x00000dc4, Size: 0x00000200, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x10000000, Load base: 0x00000e74, Size: 0x00000200, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -363,46 +363,48 @@ Image component sizes
 
          8          0          0          0          0        192   busywait.o
        132         42          0          0          0        248   capture_flag_handler.o
-        84         26          0          0          0        224   capture_init.o
+       108         38          0          0          0        228   capture_init.o
         20          0          0          0          0        200   channel_init.o
         10          0          0          0          0        208   clear_new_key_flag.o
         24         10          0          0          0        196   configclock.o
-       216         58          0          0          0        276   configurechannel.o
-        40          6          0          0          0        220   determine_prescale.o
+       272         70          0          0          0        300   configurechannel.o
+        20          6          0          0          0        212   determine_prescale.o
         28          8          0          0          0        216   disablep0interrupt.o
         36          0          0          0          0        200   divide.o
         28          8          0          0          0        212   enablep0interrupt.o
-       152         24          0          0          0        244   enterchannel.o
-       224         28          0          0          0        268   entertx.o
+       216         44          0          0          0        260   enterchannel.o
+       224         28          0          0          0        264   entertx.o
         96         18          0          0          0        228   get_key_num.o
         16          0          0          0          0        212   get_next_key_input.o
-        72         24          0          0          0        220   init_tmr16b0.o
-        68         26          0          0          0        216   init_tmr16b1.o
-        88         34          0          0          0        224   init_tmr32b0.o
-        72         24          0          0          0        220   init_tmr32b1.o
+        48         12          0          0          0        216   init_tmr16b0.o
+        44         14          0          0          0        208   init_tmr16b1.o
+        80         24          0          0          0        224   init_tmr32b0.o
+        80         24          0          0          0        224   init_tmr32b1.o
         28         20          0          0          0        208   key_num_to_ascii.o
         40         16          0          0          0        216   keypad_config_dir.o
-       156         64          0          0          0        236   keypad_init.o
+       140         60          0          0          0        228   keypad_init.o
        152         20          0          0          0        252   lcd_command.o
         40         12          0          0          0        208   lcd_config_dir.o
        152         48          0          0          0        232   lcd_init.o
         60          4          0          0          0        200   main.o
        348         90          0          0          0        300   memory_update.o
        304         64          0          0          0        288   memorysearch.o
-        40          6          0          0          0        216   pioint0_irqhandler.o
-        20          8          0          0          0        204   print_character.o
+        36          4          0          0          0        216   pioint0_irqhandler.o
+        12          0          0          0          0        204   print_character.o
         72         14          0          0          0        236   print_decimal_to_lcd.o
         50          8          0          0          0        212   print_string.o
-       152         26          0          0          0        248   processinputs.o
+       148         24          0          0          0        244   processinputs.o
         32         12        192          0        512        740   startup_lpc11xx.o
-       200         30          0          0          0        296   timer32_0_irqhandler.o
-        40          4          0          0          0        228   tmr32b0mr3_interrupt.o
+        96         18          0          0          0        248   timer32_0_irqhandler.o
+        60         10          0          0          0        236   timer32_1_irqhandler.o
+       156         16          0          0          0        268   tmr32b0cap_int.o
+        56         10          0          0          0        232   tmr32b0mr3_interrupt.o
         28          6          0          0          0        220   wait_for_key_release.o
 
     ----------------------------------------------------------------------
-      3332        788        192          0        512       8964   Object Totals
+      3508        802        192          0        512       9436   Object Totals
          0          0          0          0          0          0   (incl. Generated)
-         4          0          0          0          0          0   (incl. Padding)
+         8          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
          0          0          0          0          0          0   Library Totals
@@ -415,15 +417,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3332        788        192          0        512       8964   Grand Totals
-      3332        788        192          0        512       8964   ELF Image Totals
-      3332        788        192          0          0          0   ROM Totals
+      3508        802        192          0        512       9436   Grand Totals
+      3508        802        192          0        512       9436   ELF Image Totals
+      3508        802        192          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 3524 (   3.44kB)
+    Total RO  Size (Code + RO Data)                 3700 (   3.61kB)
     Total RW  Size (RW Data + ZI Data)               512 (   0.50kB)
-    Total ROM Size (Code + RO Data + RW Data)       3524 (   3.44kB)
+    Total ROM Size (Code + RO Data + RW Data)       3700 (   3.61kB)
 
 ==============================================================================
 

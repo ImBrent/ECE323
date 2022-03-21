@@ -1,10 +1,12 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;LCD_config_dir.s
-;Performs the following initializations:
-;	* 
-;		- Configures direction of pins 0.1, 0.2, 0.3, 0.4, 0.7 and 1.8 as output
-;		- Disable the P0's interrupt
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Configures the direction of GPIO pins needed to write to LCD
+;Preconditions:
+;	* PIO0 pins 1,2,3,4,7 and PIO1_8 are configured as GPIO
+;Postconditions:
+;	* Configures direction of pins 0.1, 0.2, 0.3, 0.4, 0.7 and 1.8 as output
+;	* Disable P0 interrupt
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA program, CODE, READONLY
  EXPORT LCD_config_dir
  INCLUDE LPC11xx.inc

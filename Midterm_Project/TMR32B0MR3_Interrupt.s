@@ -1,10 +1,27 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; TMR32B0MR_Interrupt.s
+; Preconditions: 
+;	* PIO1_7 configured as output GPIO
+; Postconditions:
+;	* Set data of PIO1_7 to be high
+;	* Increment counter(s) used by capture pin
+;		- These timers let the capture pin know how many overflows occured between capture eents
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
  AREA PROGRAM, CODE, READONLY
  EXPORT TMR32B0MR3_Interrupt
  INCLUDE GlobalVariables.inc
  INCLUDE LPC11xx.inc
  
 TMR32B0MR3_Interrupt
-	PUSH{R3,R5,LR}
+	PUSH{R3-R5,LR}
+	;Set output of PIO1_7 to be high
+	LDR R3, =GPIO1DATA
+	LDR R5, [R3]
+	MOVS R4, #0x80
+	ORRS R5, R5, R4	;Set bit 7
+	STR R5, [R3]	
+	
 	;If CCR configured for neg edge, then increment both counters.
 	;Otherwise, incremenet only counter 0
 	;Read CCR to determine whether pos or negative edge event
@@ -31,6 +48,6 @@ inc_counter0
 	ADDS R5, #1	;Increment counter
 	STR R5, [R3];Store counter back to memory
 	
-	POP{R3,R5,PC}
+	POP{R3-R5,PC}
 	ALIGN
 	END

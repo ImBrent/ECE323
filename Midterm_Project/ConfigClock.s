@@ -1,6 +1,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;ConfigClock.s
-;Configures the SYSAHBCLKCTRL register.
+;Configures the SYSAHBCLKCTRL register for needed peripherals
+;Preconditions:
+;	* None
+;Postconditions:
+;	* SYSAHBCLKCTRL is enabled for:
+;		- IOCON	(bit 16)
+;		- GPIO (bit 6)
+;		- CT32B0/1, CT16B0/1 (bits 7-10)
+;		- Anything enabled prior to the subroutine call
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  INCLUDE	LPC11xx.inc

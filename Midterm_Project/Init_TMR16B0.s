@@ -1,6 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Init_TMR16B0
-;
+; Performs the following intializations to configure TMR16B0 for PWM:
+;	* Configures PIO0_9 as CT16B0_MAT1
+;	* Configures MCR to reset on MR0
+;	* Initializes MR0 and MR1 to be 0
+;	* Sets MAT1 as PWM
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  INCLUDE LPC11xx.inc
@@ -27,14 +31,7 @@ Init_TMR16B0
 	ORRS R1, R1, R2
 	STR R1, [R0]
 	
-	;MR. Initially, LED should just be on. Set MR1 to be 0 and MR1 to be 65535. Don't start clock.
-	LDR R0, =TMR16B0MR1
-	LDR R1, =0		;Set MR1 to be 0
-	STR R1, [R0]
-	
-	LDR R0, =TMR16B0MR0
-	LDR R1, =0
-	STR R1, [R0]
+	;Initially, LED should just be on. Don't start clock.
 	
 	;PWM. Set MAT1 as PWM (bit 1 set)
 	LDR R0, =TMR16B0PWMC

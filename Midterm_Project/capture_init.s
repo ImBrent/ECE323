@@ -1,5 +1,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;capture_init
+;Performs necessary initializations to use CT32B0_CAP:
+;	* IOCON_PIO1_5 is set for CT32B0_CAP0 function and Pull-up resistor mode
+;	* ISER of NVIC configured to allow CT32B0 to trigger interrupt
+;	* Configure CCR to capture on rising edge and interrupt on event
+;	* Configure MCR to interrupt on MR3 (used for counters that track overflow)
+;	* Initialize counters to be 0
+;	* Start timer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  EXPORT capture_init
@@ -39,6 +46,11 @@ capture_init
 	ORRS R1, R1, R2
 	STR R1, [R0]
 
+	;Set MR3 to a large value
+	LDR R0, =TMR32B0MR3
+	LDR R1, =48000000
+	STR R1, [R0]
+
 	;Initialize counters to 0
 	LDR R0, =0xFFFF0
 	ANDS R0, R0, R7
@@ -56,6 +68,11 @@ capture_init
 	SUBS R1, R0, R1
 	LDR R2, [R1]
 
+	;Start timer
+	LDR R0, =TMR32B0TCR
+	MOVS R1, #1
+	STR R1, [R0]
+	
 	POP{R0-R2,PC}
 	ALIGN
 	END

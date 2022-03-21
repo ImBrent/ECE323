@@ -1,6 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;clear_new_key_flag
 ;Clears new key flag stored in R7
+;Preconditions:
+;	* None
+;Postconditions:
+;	* Clears new key flag (Bit 31 of R7)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  AREA PROGRAM, CODE, READONLY
  EXPORT clear_new_key_flag
